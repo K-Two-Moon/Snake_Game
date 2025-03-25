@@ -4,6 +4,11 @@ public enum ComponentType
 {
     PlayerInput,
     EnemyAI,
+
+
+
+    //UI的C层组件
+    MainPanelController
 }
 
 /// <summary>
@@ -27,6 +32,8 @@ public static class ComponentFactory
     {
         ComponentType.PlayerInput => new PlayerInput(type, obj),
         ComponentType.EnemyAI => new EnemyAI(type, obj),
+        //================UI的C层作为组件
+        ComponentType.MainPanelController => new MainPanelController(type, obj),
         _ => null
     };
 }

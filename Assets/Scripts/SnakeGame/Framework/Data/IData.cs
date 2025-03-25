@@ -2,7 +2,12 @@ public interface IData
 {
 }
 
-internal class SnakeData : IData
+public class SnakeData : IData
+{
+
+}
+
+public class MainPanelData:IData
 {
 
 }
