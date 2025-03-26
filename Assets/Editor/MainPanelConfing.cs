@@ -38,7 +38,7 @@ public class Item
     public Sprite bg_false;
     //public Sprite icon;
     //public string t_name;
-    public int level_num;
+    //public int level_num;
     public Sprite down_icon_true;
     public Sprite down_icon_false;
     public int money_num;
