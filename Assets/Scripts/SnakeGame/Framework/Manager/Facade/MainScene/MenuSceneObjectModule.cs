@@ -1,3 +1,4 @@
+using Cinemachine;
 using UnityEditor;
 using UnityEngine;
 
@@ -9,14 +10,21 @@ public class MenuSceneObjectModule : IModule
     public void Initialize()
     {
         // 创建主界面,然后传入数据
-        MainPanel mainPanel = UIFactory.CreateProduct(UIType.MainPanel) as MainPanel;
+        // MainPanel mainPanel = UIFactory.CreateProduct(UIType.MainPanel) as MainPanel;
         //传数据
-        MainPanelData mainPanelData = new MainPanelData(ConfigManager.Instance.GetUIConfig<MainPanelConfing>() as MainPanelConfing);
-        mainPanel.InitializeData(mainPanelData);
+        // MainPanelData mainPanelData = new MainPanelData(ConfigManager.Instance.GetConfig<MainPanelConfing>() as MainPanelConfing);
+        // mainPanel.InitializeData(mainPanelData);
         //开始创建
-        mainPanel.Create();
+        // mainPanel.Create();
 
 
+
+        // 这里是我的测试代码======================
+
+        IGameObject player = GameObject3DFactory.CreateProduct(GameObject3DType.SnakePlayer);
+        SnakeData snakeData = new SnakeData(ConfigManager.Instance.GetSnakeConfig(1) as SnakeConfig);
+        player.InitializeData(snakeData);
+        player.Create();
     }
 
     public void Update(float deltaTime)

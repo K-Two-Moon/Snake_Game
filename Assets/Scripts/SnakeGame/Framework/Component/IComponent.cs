@@ -16,6 +16,9 @@ public abstract class IComponent
         this.type = type;
     }
 
+    /// <summary>
+    /// 基类方法没有逻辑
+    /// </summary>
     public virtual void Initialize()
     {
 

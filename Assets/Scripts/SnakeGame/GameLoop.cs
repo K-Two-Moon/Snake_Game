@@ -13,6 +13,8 @@ public class GameLoop : MonoBehaviour
         // 切换场景不被删除
         DontDestroyOnLoad(gameObject);
 
+        ConfigManager.Instance.Initialize();
+
         m_SceneStateController = new SceneStateController();
         m_SceneStateController.Initialize();
     }

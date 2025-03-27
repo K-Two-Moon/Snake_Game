@@ -14,6 +14,9 @@ public abstract class IGameObject
 
     public abstract void InitializeData(IData data);
 
+    /// <summary>
+    /// 重写后先调用后调用不影响
+    /// </summary>
     public virtual void Create()
     {
         componentDict = new Dictionary<ComponentType, IComponent>();
@@ -49,7 +52,14 @@ public abstract class IGameObject
         this.id = id;
     }
 
+    /// <summary>
+    /// 子类实现自己的Update,父类逻辑为空
+    /// </summary>
+    /// <param name="deltaTime"></param>
+    public virtual void Update(float deltaTime)
+    {
 
+    }
 
     protected void AddComponent(ComponentType type)
     {
@@ -70,6 +80,20 @@ public abstract class IGameObject
         {
             componentDict.Remove(type);
         }
+    }
+
+    /// <summary>
+    /// 获取自定义组件
+    /// </summary>
+    /// <param name="type"></param>
+    /// <returns></returns>
+    public IComponent GetComponent(ComponentType type)
+    {
+        if (componentDict.ContainsKey(type))
+        {
+            return componentDict[type];
+        }
+        return null;
     }
 }
 

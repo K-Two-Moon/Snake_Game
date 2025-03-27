@@ -2,17 +2,17 @@ using UnityEngine;
 
 public abstract class Object3D : IGameObject
 {
-    protected static Transform parent2D;
+    protected static Transform parent3D;
 
     public Object3D()
     {
-        if (parent2D == null)
+        if (parent3D == null)
         {
-            parent2D = GameObject.Find("Parent3D").transform;
-            if (parent2D == null)
+            parent3D = GameObject.Find("Parent3D")?.transform;
+            if (parent3D == null)
             {
-                parent2D = new GameObject("Parent3D").transform;
-                parent2D.position = Vector3.zero;
+                parent3D = new GameObject("Parent3D").transform;
+                parent3D.position = Vector3.zero;
             }
         }
     }

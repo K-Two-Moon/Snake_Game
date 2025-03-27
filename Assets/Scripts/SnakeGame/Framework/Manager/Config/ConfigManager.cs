@@ -1,28 +1,66 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ConfigManager : Singleton<ConfigManager>
 {
-    Dictionary<string, IConfig> uiDict = new Dictionary<string, IConfig>();
+    /// <summary>
+    /// ScriptObject配置文件
+    /// </summary>
+    Dictionary<string, IConfig> dict = new Dictionary<string, IConfig>();
+
+    /// <summary>
+    /// 蛇配置文件
+    /// </summary>
+    public Dictionary<uint, SnakeConfig> snakeConfigDict = new Dictionary<uint, SnakeConfig>();
+
     public void Initialize()
     {
-        MainPanelConfing mainPanelConfing = Resources.Load<MainPanelConfing>("MainConfig");
-        uiDict.Add(typeof(MainPanelConfing).Name, mainPanelConfing);
+        // 加载UI配置文件
+        //MainPanelConfing mainPanelConfing = Resources.Load<MainPanelConfing>("MainConfig");
+        //dict.Add(typeof(MainPanelConfing).Name, mainPanelConfing);
+
+        // 加载蛇配置文件
+        SnakeConfigArray snakeConfigArray = Resources.Load<SnakeConfigArray>("3DConfig/SnakeArray");
+        dict.Add(typeof(SnakeConfigArray).Name, snakeConfigArray);
+        foreach (SnakeConfig config in snakeConfigArray.configsArray)
+        {
+            snakeConfigDict.Add(config.id, config);
+        }
     }
 
     public void Dispose()
     {
-        uiDict.Clear();
-        uiDict = null;
+        dict.Clear();
+        dict = null;
     }
 
-    public IConfig GetUIConfig<T>()
+    /// <summary>
+    /// 获取ScriptObject配置文件
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <returns></returns>
+    public IConfig GetConfig<T>()
     {
         string name = typeof(T).Name;
-        if (uiDict.ContainsKey(name))
+        if (dict.ContainsKey(name))
         {
-            return uiDict[name];
+            return dict[name];
+        }
+        else
+        {
+            Debug.LogError("没有这个数据");
+            return null;
+        }
+    }
+
+    /// <summary>
+    /// 获取蛇配置文件
+    /// </summary>
+    public SnakeConfig GetSnakeConfig(uint id)
+    {
+        if (snakeConfigDict.ContainsKey(id))
+        {
+            return snakeConfigDict[id];
         }
         else
         {

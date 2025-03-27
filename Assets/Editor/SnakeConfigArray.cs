@@ -1,4 +1,5 @@
 using System;
+using UnityEditor;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "SnakeArray", menuName = "配置表3D/SnakeArray", order = 0)]

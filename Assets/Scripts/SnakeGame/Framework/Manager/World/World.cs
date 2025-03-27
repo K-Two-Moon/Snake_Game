@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEngine;
 
 
 public class World : Singleton<World>
@@ -50,6 +51,10 @@ public class World : Singleton<World>
 
     public void Update()
     {
-
+        float dayTime = Time.deltaTime;
+        foreach (IGameObject item in allObjectDict.Values)
+        {
+            item.Update(dayTime);
+        }
     }
 }
