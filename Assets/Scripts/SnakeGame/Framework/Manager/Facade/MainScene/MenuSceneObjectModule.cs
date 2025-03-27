@@ -10,12 +10,12 @@ public class MenuSceneObjectModule : IModule
     public void Initialize()
     {
         // 创建主界面,然后传入数据
-        // MainPanel mainPanel = UIFactory.CreateProduct(UIType.MainPanel) as MainPanel;
+         MainPanel mainPanel = UIFactory.CreateProduct(UIType.MainPanel) as MainPanel;
         //传数据
-        // MainPanelData mainPanelData = new MainPanelData(ConfigManager.Instance.GetConfig<MainPanelConfing>() as MainPanelConfing);
-        // mainPanel.InitializeData(mainPanelData);
+         MainPanelData mainPanelData = new MainPanelData(ConfigManager.Instance.GetConfig<MainPanelConfing>() as MainPanelConfing);
+         mainPanel.InitializeData(mainPanelData);
         //开始创建
-        // mainPanel.Create();
+         mainPanel.Create();
 
 
 

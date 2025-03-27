@@ -16,8 +16,8 @@ public class ConfigManager : Singleton<ConfigManager>
     public void Initialize()
     {
         // 加载UI配置文件
-        //MainPanelConfing mainPanelConfing = Resources.Load<MainPanelConfing>("MainConfig");
-        //dict.Add(typeof(MainPanelConfing).Name, mainPanelConfing);
+        MainPanelConfing mainPanelConfing = Resources.Load<MainPanelConfing>("UIConfig/MainConfig");
+        dict.Add(typeof(MainPanelConfing).Name, mainPanelConfing);
 
         // 加载蛇配置文件
         SnakeConfigArray snakeConfigArray = Resources.Load<SnakeConfigArray>("3DConfig/SnakeArray");
