@@ -1,19 +1,29 @@
+using log4net.Core;
 using UnityEngine;
 
 public class MainPanelData : IData
 {
-    public GameObject mainPanel;
+    /// <summary>
+    /// 不变的
+    /// </summary>
+    public MainPanelConfing confing;
+
+    /// <summary>
+    /// 变的
+    /// </summary>
     public int money = 1;//金币
     public int diamond;//钻石
-    public Item[] itemArray;
-    public Transform parent;
+
+    public int level1;
+    public int level2;
+    public int level3;
+
+    public int sum1;
+    public int sum2;
+    public int sum3;
 
     public MainPanelData(MainPanelConfing confing)
     {
-        mainPanel = confing.mainPanel;
-        money = confing.money;
-        diamond = confing.diamond;
-        itemArray = confing.itemArray;
-        parent = confing.parent;
+        this.confing = confing;
     }
 }

@@ -7,7 +7,7 @@ public class ConfigManager:Singleton<ConfigManager>
     Dictionary<string,IConfig> dict = new Dictionary<string, IConfig>();
     public void Initialize()
     {
-        MainPanelConfing mainPanelConfing = Resources.Load<MainPanelConfing>("MainConfig");
+        MainPanelConfing mainPanelConfing = Resources.Load<MainPanelConfing>("UIConfig/MainConfig");
         dict.Add(typeof(MainPanelConfing).Name,mainPanelConfing);
     }
 

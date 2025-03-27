@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: MainConfig
   m_EditorClassIdentifier: Editor::MainPanelConfing
   mainPanel: {fileID: 1635679434836882613, guid: 2a2eaf0759d2d754b916863071d6b0d8, type: 3}
+  panel_pos: {x: 720, y: 1544}
+  size: {x: 0.6, y: 0.6}
   money: 0
   diamond: 0
   itemArray:
