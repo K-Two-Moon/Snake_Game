@@ -5,6 +5,21 @@ using UnityEngine;
 public sealed class SnakeConfigArray : IConfig
 {
     public SnakeConfig[] configsArray;
+
+    private void OnValidate()
+    {
+        for (uint i = 0; i < configsArray.Length; i++)
+        {
+            configsArray[i].id = i + 1;
+        }
+
+        foreach (var config in configsArray)
+        {
+            config.head = Resources.Load<GameObject>("SnakeMesh/Head/Boss_head" + config.id);
+            config.body = Resources.Load<GameObject>("SnakeMesh/Body/Boss_body" + config.id);
+            config.tail = Resources.Load<GameObject>("SnakeMesh/Tail/Boss_tail" + config.id);
+        }
+    }
 }
 
 [Serializable]
