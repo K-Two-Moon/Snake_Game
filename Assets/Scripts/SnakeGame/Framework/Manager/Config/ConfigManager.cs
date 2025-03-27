@@ -2,27 +2,27 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ConfigManager:Singleton<ConfigManager>
+public class ConfigManager : Singleton<ConfigManager>
 {
-    Dictionary<string,IConfig> dict = new Dictionary<string, IConfig>();
+    Dictionary<string, IConfig> uiDict = new Dictionary<string, IConfig>();
     public void Initialize()
     {
         MainPanelConfing mainPanelConfing = Resources.Load<MainPanelConfing>("MainConfig");
-        dict.Add(typeof(MainPanelConfing).Name,mainPanelConfing);
+        uiDict.Add(typeof(MainPanelConfing).Name, mainPanelConfing);
     }
 
     public void Dispose()
     {
-       
-        dict = null;
+        uiDict.Clear();
+        uiDict = null;
     }
 
-    public IConfig GetConfig<T>()
+    public IConfig GetUIConfig<T>()
     {
         string name = typeof(T).Name;
-        if (dict.ContainsKey(name))
+        if (uiDict.ContainsKey(name))
         {
-            return dict[name];
+            return uiDict[name];
         }
         else
         {

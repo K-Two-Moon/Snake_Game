@@ -1,24 +1,18 @@
 using System;
 using UnityEngine;
 
-
-public class IConfig:ScriptableObject
-{
-
-}
-
 //1 默认名
 
 //2.菜单名
 
 //3.索引
-[CreateAssetMenu(fileName = "main", menuName = "配置表/main", order = 0)]
+[CreateAssetMenu(fileName = "MainPanel", menuName = "配置表UI/main", order = 0)]
 public class MainPanelConfing : IConfig
 {
     public GameObject mainPanel;
     public int money = 1;//金币
     public int diamond;//钻石
-    public  Item[] itemArray;
+    public Item[] itemArray;
     public Transform parent;
     [Header("窗口位置")]
     public Vector2 parent_pos;

@@ -11,7 +11,7 @@ public class MenuSceneObjectModule : IModule
         // 创建主界面,然后传入数据
         MainPanel mainPanel = UIFactory.CreateProduct(UIType.MainPanel) as MainPanel;
         //传数据
-        MainPanelData mainPanelData = new MainPanelData(ConfigManager.Instance.GetConfig<MainPanelConfing>() as MainPanelConfing);
+        MainPanelData mainPanelData = new MainPanelData(ConfigManager.Instance.GetUIConfig<MainPanelConfing>() as MainPanelConfing);
         mainPanel.InitializeData(mainPanelData);
         //开始创建
         mainPanel.Create();
