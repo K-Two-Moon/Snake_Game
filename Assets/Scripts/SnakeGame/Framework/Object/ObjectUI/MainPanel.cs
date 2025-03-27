@@ -6,7 +6,7 @@ public class MainPanel : ObjectUI
 
     public override void InitializeData(IData data)
     {
-        this.data = data as MainPanelData;
+        // this.data = data as MainPanelData;
     }
 
     public override void Create()
