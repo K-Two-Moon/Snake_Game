@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08caee20427c9c44e9d8363d97b0356e, type: 3}
+  m_Name: SnakeArray
+  m_EditorClassIdentifier: Editor::SnakeConfigArray
+  configsArray:
+  - id: 1
+    head: {fileID: 2727753780539971607, guid: 29a713da740e8a1429ed0184aaa4eb41, type: 3}
+    body: {fileID: 7803037600543966846, guid: d017249077a7d054a8607fe960d3158e, type: 3}
+    tail: {fileID: 742394984864778, guid: 726aacb73ef8d8544b9cd1b0136408e1, type: 3}
+  - id: 2
+    head: {fileID: 3836135559967505137, guid: ed6c8c1a7ee6c4e4baf0c14e7cba743b, type: 3}
+    body: {fileID: 164765728382903571, guid: 4213c2c1474d84a4c812aec74b3c1355, type: 3}
+    tail: {fileID: 8592010367776164327, guid: c0b4e9dc1ebab254a8d75dd0a786ebe4, type: 3}
+  - id: 3
+    head: {fileID: 2517516247625948660, guid: 0864187e4f109d447a7e4cf317b2002b, type: 3}
+    body: {fileID: 2975016986029671200, guid: 2a87d7ff9736a9f4db039a3bf2b38c6d, type: 3}
+    tail: {fileID: 883292251907892997, guid: cc1984b3625caf64aa1d30ed3236e9a8, type: 3}
+  - id: 4
+    head: {fileID: 1064638143162224358, guid: dec2e1ffa7230b545bfe6f64eadd2384, type: 3}
+    body: {fileID: 1406148164760918287, guid: 910b99485f60ad9409e802b5d5be4701, type: 3}
+    tail: {fileID: 3656631370488560152, guid: e503582643c71884cb8a67b625ced63b, type: 3}
+  - id: 5
+    head: {fileID: 8792584501891990320, guid: c342dea6ab0fdb84da84b127a9ac2acd, type: 3}
+    body: {fileID: 3700970902405945054, guid: 2058bebbc64515b46ac399a1adbb652c, type: 3}
+    tail: {fileID: 1199909468643184398, guid: 12edbc81cf716774e96cbcf094a502ce, type: 3}
+  - id: 6
+    head: {fileID: 507581832703604963, guid: 46b5cb581a382e24f89dccd71e95a085, type: 3}
+    body: {fileID: 2886850520438337450, guid: 7418cd5fcc2aade4d82db8256c3806bc, type: 3}
+    tail: {fileID: 2795546710738193463, guid: 2340091bb6b43d84e906a27eb88af271, type: 3}
+  - id: 7
+    head: {fileID: 2732146533449461421, guid: c20c75960e4e8064cbac9c9d2991de29, type: 3}
+    body: {fileID: 5940653010449741438, guid: e1125978023cb434b9944004dce4e76e, type: 3}
+    tail: {fileID: 360682026158355844, guid: b480dad68f70348478160d61cb6ec210, type: 3}
