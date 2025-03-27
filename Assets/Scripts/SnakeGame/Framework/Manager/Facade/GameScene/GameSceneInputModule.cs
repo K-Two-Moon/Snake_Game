@@ -1,15 +1,14 @@
 using UnityEngine;
 
-public class MenuScenInputModule : IModule
+public class GameSceneInputModule : IModule
 {
     public void Initialize()
     {
-
+        
     }
-
 
     public void Update(float deltaTime)
     {
-
+        
     }
 }
