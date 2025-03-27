@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public abstract class Object2D : IGameObject
+public abstract class Object3D : IGameObject
 {
     protected static Transform parent2D;
 
-    public Object2D()
+    public Object3D()
     {
         if (parent2D == null)
         {

@@ -1,4 +1,4 @@
-public abstract class Snake : Object2D
+public abstract class Snake : Object3D
 {
     SnakeData data;
     public override void InitializeData(IData data)
