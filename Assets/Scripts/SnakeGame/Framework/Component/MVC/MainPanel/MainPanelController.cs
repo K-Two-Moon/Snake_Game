@@ -16,4 +16,9 @@ public class MainPanelController : IComponent
     {
 
     }
+
+    public override void Update()
+    {
+        base.Update();
+    }
 }

@@ -1,6 +1,8 @@
+using UnityEngine;
+
 public class MainPanel : ObjectUI
 {
-    private MainPanelData data;
+    public MainPanelData data;
 
     public override void InitializeData(IData data)
     {
@@ -9,10 +11,10 @@ public class MainPanel : ObjectUI
 
     public override void Create()
     {
-        base.Create();
-
-       
+        //在这根据数据创建对象  
+        GameObject.Instantiate(data.mainPanel);
         
+        base.Create();
     }
 
     protected override void OnCreate()

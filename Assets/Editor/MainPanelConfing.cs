@@ -3,13 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+public class IConfig:ScriptableObject
+{
+
+}
+
 //1 默认名
 
 //2.菜单名
 
 //3.索引
 [CreateAssetMenu(fileName = "main", menuName = "配置表/main", order = 0)]
-public class MainPanelConfing : ScriptableObject
+public class MainPanelConfing : IConfig
 {
     public GameObject mainPanel;
     public int money = 1;//金币

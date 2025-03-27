@@ -7,7 +7,3 @@ public class SnakeData : IData
 
 }
 
-public class MainPanelData:IData
-{
-
-}

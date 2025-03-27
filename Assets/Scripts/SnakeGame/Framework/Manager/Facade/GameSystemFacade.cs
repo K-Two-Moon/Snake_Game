@@ -1,19 +1,31 @@
+using System;
+using System.Collections.Generic;
+
 public class GameSystemFacade
 {
-    private readonly IInputModule _inputModule;
-    private readonly IUpdateModule _updateModule;
+    List<IModule> moduleList = new List<IModule>();
 
-    public GameSystemFacade(IInputModule inputModule, IUpdateModule updateModule)
+    public void Initialize()
     {
-        _inputModule = inputModule;
-        _updateModule = updateModule;
+        foreach (var moduled in moduleList)
+        {
+            moduled.Initialize();
+        }
+    }
 
+    public void AddModule(IModule moduled)
+    {
+        moduleList.Add(moduled);
     }
 
     // 统一对外方法
     public void Update(float deltaTime)
     {
-        _inputModule.ProcessInput();
-        _updateModule.Tick(deltaTime);
+        foreach (var moduled in moduleList)
+        {
+            moduled.Update(deltaTime);
+        }
     }
+
+   
 }

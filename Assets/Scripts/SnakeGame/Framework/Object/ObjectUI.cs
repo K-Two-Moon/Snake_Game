@@ -15,5 +15,13 @@ public abstract class ObjectUI : IGameObject
             }
         }
     }
+
+    public override void Create()
+    {
+        Obj.transform.SetParent(cavansTransform);
+        base.Create();
+    }
 }
+
+
 

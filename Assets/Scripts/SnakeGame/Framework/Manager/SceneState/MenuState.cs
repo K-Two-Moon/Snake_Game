@@ -17,11 +17,12 @@ internal class MenuState : SceneState
         base.Enter();
 
         facade = new GameSystemFacade(
-            //输入模块
-            new InputModule(),
-            //更新数据模块
-            new UpdateModule()
         );
+
+        facade.AddModule(new MenuSceneInputModule());
+        facade.AddModule(new MenuSceneObjectModule());
+
+        facade.Initialize();
     }
 
     public override void Exit()

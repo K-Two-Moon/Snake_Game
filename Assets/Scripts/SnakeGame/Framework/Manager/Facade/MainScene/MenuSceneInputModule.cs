@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class MenuScenInputModule : IModule
+public class MenuSceneInputModule : IModule
 {
     public void Initialize()
     {

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public abstract class IGameObject
 {
-    private GameObject obj;
+    protected GameObject obj;
 
     private uint id;
 
