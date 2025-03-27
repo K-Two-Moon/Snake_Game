@@ -16,8 +16,7 @@ internal class MenuState : SceneState
         //基类中初始化世界
         base.Enter();
 
-        facade = new GameSystemFacade(
-        );
+        facade = new GameSystemFacade();
 
         facade.AddModule(new MenuSceneInputModule());
         facade.AddModule(new MenuSceneObjectModule());
