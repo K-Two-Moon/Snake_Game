@@ -3,6 +3,13 @@
 /// </summary>
 public class MenuSceneObjectModule : IModule
 {
+    private SceneStateController controller;
+
+    public MenuSceneObjectModule(SceneStateController controller)
+    {
+        this.controller = controller;
+    }
+
     //暂时不写多线程优化
     //List<Snake> snakeList = new List<Snake>();
     public void Initialize()
@@ -19,19 +26,18 @@ public class MenuSceneObjectModule : IModule
 
         // 这里是我的测试代码======================
 
-        Snake player = GameObject3DFactory.CreateProduct(GameObject3DType.SnakePlayer) as Snake;
+        Snake playerModel = GameObject3DFactory.CreateProduct(GameObject3DType.SnakePlayerModle) as Snake;
         SnakeData snakeData = new SnakeData(ConfigManager.Instance.GetSnakeConfig(1) as SnakeConfig);
-        player.InitializeData(snakeData);
-        player.Create();
-        
+        playerModel.InitializeData(snakeData);
+        playerModel.Create();
 
-        for (int i = 2; i <= 7; i++)
-        {
-            Snake enemy = GameObject3DFactory.CreateProduct(GameObject3DType.SnakeEnemy) as Snake;
-            SnakeData snakeDataEnemy = new SnakeData(ConfigManager.Instance.GetSnakeConfig((uint)i) as SnakeConfig);
-            enemy.InitializeData(snakeDataEnemy);
-            enemy.Create();
-        }
+        // for (int i = 2; i <= 7; i++)
+        // {
+        //     Snake enemy = GameObject3DFactory.CreateProduct(GameObject3DType.SnakeEnemy) as Snake;
+        //     SnakeData snakeDataEnemy = new SnakeData(ConfigManager.Instance.GetSnakeConfig((uint)i) as SnakeConfig);
+        //     enemy.InitializeData(snakeDataEnemy);
+        //     enemy.Create();
+        // }
     }
 
     public void Update(float deltaTime)

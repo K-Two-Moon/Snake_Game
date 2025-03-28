@@ -11,6 +11,10 @@ public enum GameObject3DType
     /// </summary>
     SnakePlayer,
     /// <summary>
+    /// 蛇(玩家模型)
+    /// </summary>
+    SnakePlayerModle,
+    /// <summary>
     /// 蛇(敌人)
     /// </summary>
     SnakeEnemy,
@@ -42,6 +46,7 @@ public static class GameObject3DFactory
     private static IGameObject SwitchBuilder(GameObject3DType type) => type switch
     {
         GameObject3DType.SnakePlayer => new SnakePlayer(),
+        GameObject3DType.SnakePlayerModle => new SnakePlayerMode(),
         GameObject3DType.SnakeEnemy => new SnakeEnemy(),
 
         _ => null,

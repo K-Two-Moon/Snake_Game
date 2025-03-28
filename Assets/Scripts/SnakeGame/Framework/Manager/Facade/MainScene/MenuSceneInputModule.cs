@@ -4,6 +4,13 @@ using UnityEngine.EventSystems;
 
 public class MenuSceneInputModule : IModule
 {
+    private SceneStateController controller;
+
+    public MenuSceneInputModule(SceneStateController controller)
+    {
+        this.controller = controller;
+    }
+
     public void Initialize()
     {
 

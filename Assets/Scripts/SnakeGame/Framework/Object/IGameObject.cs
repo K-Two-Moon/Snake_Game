@@ -26,13 +26,12 @@ public abstract class IGameObject
         OnCreate();
     }
 
+    /// <summary>
+    /// 基类没有逻辑
+    /// </summary>
     protected virtual void OnCreate()
     {
-        //子类中添加组件
-        foreach (IComponent component in componentDict.Values)
-        {
-            component.Initialize();
-        }
+        
     }
 
     public virtual void Destroy()
@@ -75,6 +74,7 @@ public abstract class IGameObject
         {
             IComponent component = ComponentFactory.CreateProduct(type, this);
             componentDict.Add(type, component);
+            component.Initialize();
         }
     }
 
@@ -99,7 +99,5 @@ public abstract class IGameObject
         }
         return null;
     }
-
-
 }
 

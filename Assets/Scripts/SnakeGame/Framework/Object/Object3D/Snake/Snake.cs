@@ -4,7 +4,7 @@ using UnityEngine;
 public abstract class Snake : Object3D
 {
     public SnakeData data;
-    List<Transform> list = new List<Transform>();
+    public List<Transform> list = new List<Transform>();
     /// <summary>
     /// 蛇头
     /// </summary>
@@ -34,6 +34,10 @@ public abstract class Snake : Object3D
     {
         //创建头
         head = Object.Instantiate(data.config.head).transform;
+        if (head == null)
+        {
+            Debug.Log("head is null");
+        }
         head.SetParent(obj.transform);
         head.position = Vector3.zero;
         list.Add(head);
@@ -64,6 +68,11 @@ public abstract class Snake : Object3D
         base.Create();
     }
 
+    protected override void OnCreate()
+    {
+        base.OnCreate();
+    }
+
 
     public override void Update(float deltaTime)
     {
@@ -72,8 +81,8 @@ public abstract class Snake : Object3D
 
         //更新贪吃蛇位置
 
-        HeadMove(deltaTime);
-        BodyAndTailMove(deltaTime);
+        //HeadMove(deltaTime);
+        //BodyAndTailMove(deltaTime);
 
     }
 
