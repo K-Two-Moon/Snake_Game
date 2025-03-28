@@ -10,6 +10,9 @@ public enum ComponentType
     //敌人组件
     EnemyAI,
 
+    //蛇的移动算法组件
+    SnakeMove,
+
 
 
     //UI的C层组件
@@ -36,12 +39,15 @@ public static class ComponentFactory
     private static IComponent SwitchBuilder(ComponentType type, IGameObject obj) => type switch
     {
         //=================玩家组件
-        ComponentType.PlayerInput => new PlayerInput(type, obj),
+        ComponentType.PlayerInput => new PlayerInputComponent(type, obj),
         ComponentType.VirtualCameraComponent => new VirtualCameraComponent(type, obj),
 
 
         //==================敌人组件
-        ComponentType.EnemyAI => new EnemyAI(type, obj),
+        ComponentType.EnemyAI => new EnemyAIComponent(type, obj),
+
+        //================蛇的移动算法组件
+        ComponentType.SnakeMove => new SnakeMoveComponent(type, obj),
 
 
         //================UI的C层作为组件

@@ -2,7 +2,7 @@ using UnityEngine;
 using System;
 using Object = UnityEngine.Object; // 添加Cinemachine的命名空间引用
 
-public class PlayerInput : IComponent
+public class PlayerInputComponent : IComponent
 {
     SnakePlayer player;
 
@@ -16,7 +16,7 @@ public class PlayerInput : IComponent
     private Vector2 joystickStartPos;             // 摇杆初始位置（鼠标按下时的屏幕坐标）
     private float joystickRadius = 100f;          // 摇杆最大偏移半径，根据需求调整
 
-    public PlayerInput(ComponentType type, IGameObject obj) : base(type, obj)
+    public PlayerInputComponent(ComponentType type, IGameObject obj) : base(type, obj)
     {
         player = obj as SnakePlayer;
 

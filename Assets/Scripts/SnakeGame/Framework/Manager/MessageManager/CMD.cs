@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,17 +6,17 @@ public class CMD
 {
     #region UI
     #region MainPanel
-    public const string Child = "������������item";
-    public const string ShowLevel = "��ʾ����";
+    public const string Child = "点击主界面的item";
+    public const string ShowLevel = "显示等级";
 
-    public const string ShowDiamond = "��ʾ��ʯ";
-    public const string ShowMonwy = "��ʾ���";
+    public const string ShowDiamond = "显示钻石";
+    public const string ShowMonwy = "显示金币";
 
-    public const string AddLevel = "��ӵĵȼ�";
+    public const string AddLevel = "添加等级";
 
-    public const string AddSpeed = "��ӵ��ٶ�";
+    public const string AddSpeed = "添加速度";
 
-    public const string AddUpgrade = "��ӵĹ�����Χ";
+    public const string AddUpgrade = "添加攻击范围";
     #endregion
     #endregion
 }

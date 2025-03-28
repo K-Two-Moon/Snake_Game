@@ -1,13 +1,13 @@
 using UnityEngine;
 
-public class EnemyAI : IComponent
+public class EnemyAIComponent : IComponent
 {
     SnakeEnemy enemy;
 
     public Vector2 currentDirection;   // 当前的随机方向
     private float timeToChangeDirection;  // 改变方向的随机时间间隔
     private float timeSinceLastChange;   // 距离上次改变方向的时间
-    public EnemyAI(ComponentType type, IGameObject obj) : base(type, obj)
+    public EnemyAIComponent(ComponentType type, IGameObject obj) : base(type, obj)
     {
         enemy = obj as SnakeEnemy;
     }
