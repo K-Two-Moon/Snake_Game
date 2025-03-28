@@ -1,7 +1,7 @@
 using UnityEngine;
-using System; // 添加Cinemachine的命名空间引用
+using System;
+using Object = UnityEngine.Object; // 添加Cinemachine的命名空间引用
 
-[Serializable]
 public class PlayerInput : IComponent
 {
     SnakePlayer player;
@@ -50,7 +50,8 @@ public class PlayerInput : IComponent
         if (!Input.GetMouseButtonDown(0)) return;
 
         // 实例化摇杆预制体并将其挂载到画布下
-        currentJoystick = GameObject.Instantiate(joystickPrefab, canvas);
+        currentJoystick = Object.Instantiate(joystickPrefab, canvas);
+        currentJoystick.name = "Rocker";
         joystickTransform = currentJoystick.GetComponent<RectTransform>();
 
         // 将摇杆放置在当前鼠标点击位置

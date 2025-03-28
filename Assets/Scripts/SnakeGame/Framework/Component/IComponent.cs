@@ -22,6 +22,9 @@ public abstract class IComponent
     {
 
     }
+    /// <summary>
+    /// 基类方法卸载组件
+    /// </summary>
     public virtual void Destroy()
     {
         obj.RemoveComponent(type);
