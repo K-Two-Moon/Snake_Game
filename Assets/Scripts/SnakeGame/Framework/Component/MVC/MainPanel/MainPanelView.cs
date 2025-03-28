@@ -28,4 +28,35 @@ public class MainPanelView
             items.Add(item_parent.GetChild(i).gameObject);
         }
     }
+
+    /// <summary>
+    /// 显示金币
+    /// </summary>
+    /// <param name="money"></param>
+    public void ShowMainMoney(int money)
+    {
+        t_money.text = money.ToString();
+    }
+
+    /// <summary>
+    /// 显示钻石
+    /// </summary>
+    /// <param name="diamond"></param>
+    public void ShowMainDiamond(int diamond)
+    {
+        t_diamond.text = diamond.ToString();
+    }
+
+    /// <summary>
+    /// 显示主界面Item
+    /// </summary>
+    /// <param name="item"></param>
+    /// <param name="money"></param>
+    public void ShowMainItem(ItemData item, int money)
+    {
+        for (int i = 0; i < items.Count; i++)
+        {
+            items[i].GetComponent<MainPanelItem>().Init(item, money);
+        }
+    }
 }

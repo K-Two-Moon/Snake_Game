@@ -19,18 +19,19 @@ public class MainPanel : ObjectUI
         obj.transform.localPosition = data.confing.panel_pos;
         //这是Item窗口
         itemWindow = GameObject.Instantiate(data.confing.parent);
-        itemWindow.parent = obj.transform;
+        itemWindow.SetParent(obj.transform,false);
         itemWindow.localPosition = data.confing.parent_pos;
         //这是三个Item对象
         for (int i = 0; i < 3; i++)
         {
             GameObject go = GameObject.Instantiate(data.confing.itemArray[i].itemObj);
             list.Add(go);
-            go.transform.parent = itemWindow;
+            go.transform.SetParent(itemWindow,false);
             //添加对应的Item脚本
             go.AddComponent<MainPanelItem>();
+            go.name = (i+1).ToString();
         }
-
+        
         base.Create();
     }
 

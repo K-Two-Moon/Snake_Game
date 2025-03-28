@@ -22,9 +22,7 @@ public class MenuSceneObjectModule : IModule
         // 这里是我的测试代码======================
 
         IGameObject player = GameObject3DFactory.CreateProduct(GameObject3DType.SnakePlayer);
-        SnakeData snakeData = new SnakeData(ConfigManager.Instance.GetSnakeConfig(1) as SnakeConfig);
-        player.InitializeData(snakeData);
-        player.Create();
+        
     }
 
     public void Update(float deltaTime)

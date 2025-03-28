@@ -10,7 +10,7 @@ public class MainPanelItem : MonoBehaviour
     public Image down_imgBG;
     public Text down_text;
 
-    public void Init(bool flag, Item item, int level)
+    public void Init(ItemData item, int money)
     {
         imgBG = gameObject.transform.GetChild(0).GetComponent<Image>();
         level_num = gameObject.transform.GetChild(4).GetComponent<Text>();
@@ -18,17 +18,19 @@ public class MainPanelItem : MonoBehaviour
         down_imgBG = gameObject.transform.GetChild(5).GetComponent<Image>();
         down_text = gameObject.transform.GetChild(6).GetComponent<Text>();
 
-        level_num.text = level.ToString();
+        level_num.text = item.level.ToString();
 
-        if (flag)
+        if (item.sum < money)
         {
-            imgBG.sprite = item.bg_true;
-            down_imgBG.sprite = item.down_icon_true;
+            imgBG.sprite = item.item.bg_true;
+            down_imgBG.sprite = item.item.down_icon_true;
+            down_text.text = item.sum.ToString();
         }
         else
         {
-            imgBG.sprite = item.bg_false;
-            down_imgBG.sprite = item.down_icon_false;
+            imgBG.sprite = item.item.bg_false;
+            down_imgBG.sprite = item.item.down_icon_false;
+            down_text.text = "FREE";
         }
     }
 }

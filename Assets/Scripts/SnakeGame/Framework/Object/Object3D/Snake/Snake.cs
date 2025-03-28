@@ -8,10 +8,8 @@ public abstract class Snake : Object3D
     protected SnakeData data;
     List<Transform> list = new List<Transform>();
 
-    public override void InitializeData(IData data)
+    public Snake ()
     {
-        this.data = data as SnakeData;
-
         //创建父节点
         if (parent3D != null)
         {
@@ -23,6 +21,14 @@ public abstract class Snake : Object3D
         {
             Debug.LogError("parent3D is null");
         }
+        SnakeData snakeData = new SnakeData(ConfigManager.Instance.GetSnakeConfig(1) as SnakeConfig);
+        InitializeData(snakeData);
+        Create();
+    }
+
+    public override void InitializeData(IData data)
+    {
+        this.data = data as SnakeData;
     }
 
     public override void Create()
