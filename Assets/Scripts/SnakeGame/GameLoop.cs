@@ -8,10 +8,10 @@ public class GameLoop : MonoBehaviour
     void Start()
     {
         // 设置帧率
-        Application.targetFrameRate = 30;
+        Application.targetFrameRate = 60;
 
         // 切换场景不被删除
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
 
         //配置表初始化
         ConfigManager.Instance.Initialize();

@@ -2,7 +2,12 @@ using UnityEngine;
 
 public enum ComponentType
 {
+    //玩家组件
     PlayerInput,
+    VirtualCameraComponent,
+
+
+    //敌人组件
     EnemyAI,
 
 
@@ -30,8 +35,15 @@ public static class ComponentFactory
 
     private static IComponent SwitchBuilder(ComponentType type, IGameObject obj) => type switch
     {
+        //=================玩家组件
         ComponentType.PlayerInput => new PlayerInput(type, obj),
+        ComponentType.VirtualCameraComponent => new VirtualCameraComponent(type, obj),
+
+
+        //==================敌人组件
         ComponentType.EnemyAI => new EnemyAI(type, obj),
+
+
         //================UI的C层作为组件
         ComponentType.MainPanelController => new MainPanelController(type, obj),
         _ => null

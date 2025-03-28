@@ -5,6 +5,10 @@ using UnityEngine;
 public class SnakeData : IData
 {
     /// <summary>
+    /// 蛇的等级
+    /// </summary>
+    public uint lv;
+    /// <summary>
     /// 蛇身体的长度
     /// </summary>
     public uint bodyLength;
@@ -33,21 +37,26 @@ public class SnakeData : IData
     public SnakeData(SnakeConfig config) //蛇只有7种颜色配置
     {
         this.config = config;
-        //初始化蛇的身体长度为1
-        bodyLength = 1;
 
-        followDistance = 1.5f;
+        lv = 1;
 
-        moveSpeed = 1;
+        //初始化蛇的身体长度为2
+        bodyLength = 20;
+
+        followDistance = 2f;
+
+        moveSpeed = 5;
 
         rotationSpeed = 360f;
 
         direcction = Quaternion.identity;
     }
 
-    public void SetDirection(Quaternion direction)
+    public void SetDirection(Vector2 v2)
     {
-        this.direcction = direction;
+        //这里的v2是屏幕坐标系下的方向，需要转换成世界坐标系下的方向
+        Vector3 v3 = new Vector3(v2.x, 0, v2.y);
+        direcction = Quaternion.LookRotation(v3);
     }
 }
 
