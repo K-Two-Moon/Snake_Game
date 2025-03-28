@@ -23,9 +23,6 @@ public abstract class Snake : Object3D
         {
             Debug.LogError("parent3D is null");
         }
-        SnakeData snakeData = new SnakeData(ConfigManager.Instance.GetSnakeConfig(1) as SnakeConfig);
-        InitializeData(snakeData);
-        Create();
     }
 
     public override void InitializeData(IData data)
