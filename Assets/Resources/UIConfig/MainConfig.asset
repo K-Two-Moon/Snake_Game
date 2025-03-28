@@ -9,41 +9,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cc49384f0df24441bda7573998077ca, type: 3}
+  m_Script: {fileID: 0}
   m_Name: MainConfig
   m_EditorClassIdentifier: Editor::MainPanelConfing
   mainPanel: {fileID: 1635679434836882613, guid: 2a2eaf0759d2d754b916863071d6b0d8, type: 3}
   panel_pos: {x: 720, y: 1544}
   size: {x: 0.6, y: 0.6}
-  money: 0
-  diamond: 0
   itemArray:
   - itemObj: {fileID: 8541647421528783850, guid: 27a029bec0abe8546aa4f5290ebc138b, type: 3}
-    level: 1
     level_Num: 800
-    sum: 800
     bg_true: {fileID: 21300000, guid: b097cfcacd04fcb4ca4801594ed057e7, type: 3}
     bg_false: {fileID: 21300000, guid: a0f890a1f022e774f972a7d7bc30d677, type: 3}
     down_icon_true: {fileID: 21300000, guid: 980ad48da686686469c547199a818aef, type: 3}
     down_icon_false: {fileID: 21300000, guid: 250252e82febaf04eb2a06f6164d4dda, type: 3}
-    money_num: 0
   - itemObj: {fileID: 1242358954852665165, guid: e570165f9da831d419758d2ec44e817e, type: 3}
-    level: 1
     level_Num: 800
-    sum: 800
     bg_true: {fileID: 21300000, guid: b097cfcacd04fcb4ca4801594ed057e7, type: 3}
     bg_false: {fileID: 21300000, guid: a0f890a1f022e774f972a7d7bc30d677, type: 3}
     down_icon_true: {fileID: 21300000, guid: 980ad48da686686469c547199a818aef, type: 3}
     down_icon_false: {fileID: 21300000, guid: 250252e82febaf04eb2a06f6164d4dda, type: 3}
-    money_num: 0
   - itemObj: {fileID: 2288759254401493303, guid: 662fd4bde548a71449135eafd024522a, type: 3}
-    level: 1
     level_Num: 800
-    sum: 800
     bg_true: {fileID: 21300000, guid: b097cfcacd04fcb4ca4801594ed057e7, type: 3}
     bg_false: {fileID: 21300000, guid: a0f890a1f022e774f972a7d7bc30d677, type: 3}
     down_icon_true: {fileID: 21300000, guid: 980ad48da686686469c547199a818aef, type: 3}
     down_icon_false: {fileID: 21300000, guid: 250252e82febaf04eb2a06f6164d4dda, type: 3}
-    money_num: 0
   parent: {fileID: 1305514139170067867, guid: 778a708635e681347a94b275fe0c9764, type: 3}
   parent_pos: {x: 0, y: -950}
