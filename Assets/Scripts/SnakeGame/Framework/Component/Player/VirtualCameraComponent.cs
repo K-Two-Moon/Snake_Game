@@ -31,14 +31,21 @@ public sealed class VirtualCameraComponent : IComponent
     {
         // 创建虚拟相机
         virtualCameraObj = new GameObject("VirtualCamera");
+        virtualCameraObj.transform.rotation = Quaternion.Euler(90, 0, 0);
         CinemachineVirtualCamera vlam = virtualCameraObj.AddComponent<CinemachineVirtualCamera>();
 
         //跟随蛇的头部
         vlam.Follow = player.head;
-        vlam.LookAt = player.head;
+        //vlam.LookAt = player.head;   看向会导致跟着旋转
+
 
         // 添加并配置 Transposer（Body）组件
-        cinemachineTransposer = vlam.AddCinemachineComponent<CinemachineTransposer>();
+        // 正确获取 Transposer
+        cinemachineTransposer = vlam.GetCinemachineComponent<CinemachineTransposer>();
+        if (cinemachineTransposer == null)
+        {
+            cinemachineTransposer = vlam.AddCinemachineComponent<CinemachineTransposer>();
+        }
         cinemachineTransposer.m_BindingMode = CinemachineTransposer.BindingMode.WorldSpace;
         cinemachineTransposer.m_FollowOffset = new Vector3(0, 20, 0);
 

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -58,7 +59,10 @@ public abstract class IGameObject
     /// <param name="deltaTime"></param>
     public virtual void Update(float deltaTime)
     {
-
+        foreach (IComponent component in componentDict.Values)
+        {
+            component.Update();
+        }
     }
 
     public void AddComponent(ComponentType type)
@@ -95,5 +99,7 @@ public abstract class IGameObject
         }
         return null;
     }
+
+
 }
 

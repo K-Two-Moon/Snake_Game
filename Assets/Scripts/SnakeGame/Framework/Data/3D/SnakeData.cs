@@ -41,20 +41,22 @@ public class SnakeData : IData
         lv = 1;
 
         //初始化蛇的身体长度为2
-        bodyLength = 2;
+        bodyLength = 20;
 
-        followDistance = 1.5f;
+        followDistance = 2f;
 
-        moveSpeed = 1;
+        moveSpeed = 5;
 
         rotationSpeed = 360f;
 
         direcction = Quaternion.identity;
     }
 
-    public void SetDirection(Quaternion direction)
+    public void SetDirection(Vector2 v2)
     {
-        this.direcction = direction;
+        //这里的v2是屏幕坐标系下的方向，需要转换成世界坐标系下的方向
+        Vector3 v3 = new Vector3(v2.x, 0, v2.y);
+        direcction = Quaternion.LookRotation(v3);
     }
 }
 

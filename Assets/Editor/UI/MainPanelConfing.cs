@@ -1,22 +1,22 @@
-using System;
+ï»¿using System;
 using UnityEngine;
 
-//1 Ä¬ÈÏÃû
+//1 é»˜è®¤å
 
-//2.²Ëµ¥Ãû
+//2.èœå•å
 
-//3.Ë÷Òı
-[CreateAssetMenu(fileName = "MainPanel", menuName = "ÅäÖÃ±íUI/main", order = 0)]
+//3.ç´¢å¼•
+[CreateAssetMenu(fileName = "MainPanel", menuName = "é…ç½®è¡¨UI/main", order = 0)]
 public class MainPanelConfing : IConfig
 {
     public GameObject mainPanel;
     public Vector2 panel_pos;
     public Vector2 size;
-    public  Item[] itemArray;
+    public Item[] itemArray;
     public Transform parent;
-    [Header("´°¿ÚÎ»ÖÃ")]
+    [Header("çª—å£ä½ç½®")]
     public Vector2 parent_pos;
-   
+
     private void OnValidate()
     {
         //foreach (var item in itemArray)
@@ -66,7 +66,7 @@ public class Item
 {
     public GameObject itemObj;
     /// <summary>
-    /// Ã¿¼¶ĞèÒª¶àÉÙ½ğ±ÒµÄ²îÖµ
+    /// æ¯çº§éœ€è¦å¤šå°‘é‡‘å¸çš„å·®å€¼
     /// </summary>
     public int level_Num;
     public Sprite bg_true;

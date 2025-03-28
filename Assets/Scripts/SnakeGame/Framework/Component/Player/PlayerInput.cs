@@ -1,14 +1,14 @@
 using UnityEngine;
-using Cinemachine;
 using System; // 添加Cinemachine的命名空间引用
 
+[Serializable]
 public class PlayerInput : IComponent
 {
     SnakePlayer player;
 
     // 摇杆预制体和所属画布
     public GameObject joystickPrefab;
-    public Canvas canvas;
+    public Transform canvas;
 
     // 内部状态变量
     private GameObject currentJoystick;         // 当前实例化的摇杆
@@ -18,7 +18,12 @@ public class PlayerInput : IComponent
 
     public PlayerInput(ComponentType type, IGameObject obj) : base(type, obj)
     {
+        player = obj as SnakePlayer;
 
+        RockerConfig config = Resources.Load<RockerConfig>("UIConfig/RockerConfig");
+        joystickPrefab = config.rockerPrefab;
+
+        canvas = GameObject.Find("Canvas").transform;
     }
 
     public override void Initialize()
@@ -45,7 +50,7 @@ public class PlayerInput : IComponent
         if (!Input.GetMouseButtonDown(0)) return;
 
         // 实例化摇杆预制体并将其挂载到画布下
-        currentJoystick = GameObject.Instantiate(joystickPrefab, canvas.transform);
+        currentJoystick = GameObject.Instantiate(joystickPrefab, canvas);
         joystickTransform = currentJoystick.GetComponent<RectTransform>();
 
         // 将摇杆放置在当前鼠标点击位置
@@ -75,6 +80,11 @@ public class PlayerInput : IComponent
 
         // 基于偏移量计算移动方向（归一化后的向量）
         Vector2 moveDirection = clampedOffset.normalized;
+
+        // 通知角色控制器更新角色移动方向
+        // Vector2.zero不能被转换为四元数，是非法的
+        if (moveDirection != Vector2.zero)
+            player.data.SetDirection(moveDirection);
 
         // 调用角色控制逻辑，例如：
         // PlayerController.Instance.Move(moveDirection);
