@@ -1,14 +1,16 @@
-using System;
 using System.Collections.Generic;
-using System.Transactions;
 using UnityEngine;
 
 public abstract class Snake : Object3D
 {
-    protected SnakeData data;
+    public SnakeData data;
     List<Transform> list = new List<Transform>();
+    /// <summary>
+    /// 蛇头
+    /// </summary>
+    public Transform head;
 
-    public Snake ()
+    public Snake()
     {
         //创建父节点
         if (parent3D != null)
@@ -34,18 +36,21 @@ public abstract class Snake : Object3D
     public override void Create()
     {
         //创建头
-        Transform head = GameObject.Instantiate(data.config.head).transform;
+        head = Object.Instantiate(data.config.head).transform;
         head.SetParent(obj.transform);
         head.position = Vector3.zero;
         list.Add(head);
 
         //创建身体
-        Transform body = GameObject.Instantiate(data.config.body).transform;
-        body.SetParent(obj.transform);
-        list.Add(body);
+        for (int i = 0; i < data.bodyLength; i++)
+        {
+            Transform body = Object.Instantiate(data.config.body).transform;
+            body.SetParent(obj.transform);
+            list.Add(body);
+        }
 
         //创建尾巴
-        Transform tail = GameObject.Instantiate(data.config.tail).transform;
+        Transform tail = Object.Instantiate(data.config.tail).transform;
         tail.SetParent(obj.transform);
         list.Add(tail);
 
@@ -86,6 +91,10 @@ public abstract class Snake : Object3D
         head.position += head.forward * data.moveSpeed * deltaTime;
     }
 
+
+    /// <summary>
+    /// 新算法
+    /// </summary>
     private void BodyAndTailMove(float deltaTime)
     {
         for (int i = 1; i < list.Count; i++)
@@ -93,20 +102,19 @@ public abstract class Snake : Object3D
             Transform previousPart = list[i - 1];
             Transform currentPart = list[i];
 
-            // 判断当前身体部分与前一部分之间的距离
-            float distance = Vector3.Distance(currentPart.position, previousPart.position);
-            if (distance > data.followDistance)
+            // 使用插值使当前位置平滑地过渡到前一部分的位置
+            Vector3 targetPosition = previousPart.position;
+            // 平滑移动，使用Lerp来实现
+            currentPart.position = Vector3.Lerp(currentPart.position, targetPosition, data.moveSpeed / 1.5f * deltaTime);
+
+            // 计算目标旋转，使当前部分面向前一部分
+            Vector3 direction = (previousPart.position - currentPart.position).normalized;
+            if (direction != Vector3.zero)
             {
-                // 计算移动方向
-                Vector3 direction = (previousPart.position - currentPart.position).normalized;
-                // 平滑移动
-                currentPart.position += direction * data.moveSpeed * deltaTime;
-
-                // 计算目标旋转，使当前部分面向前一部分
                 Quaternion targetRotation = Quaternion.LookRotation(direction);
-                // 平滑旋转到目标角度
-                currentPart.rotation = Quaternion.RotateTowards(currentPart.rotation, targetRotation, data.rotationSpeed * deltaTime);
 
+                // 平滑旋转到目标角度
+                currentPart.rotation = Quaternion.RotateTowards(currentPart.rotation, targetRotation, data.rotationSpeed * deltaTime * 2);
             }
         }
     }

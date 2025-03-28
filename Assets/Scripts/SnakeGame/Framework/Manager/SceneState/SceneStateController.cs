@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -42,12 +43,33 @@ public class SceneStateController
     {
         if (stateDict.ContainsKey(state))
         {
-            SetState(stateDict[state]);
+            //异步 设置新的场景状态，切换场景
+            //SetStateAsync(stateDict[state]);
+            //不切换场景
+            SetStateNoLoadScene(stateDict[state]);
+        }
+    }
+
+    /// <summary>
+    /// 单纯切换状态，不切换场景
+    /// </summary>
+    private void SetStateNoLoadScene(ISceneState newState)
+    {
+        if (currentState != null)
+        {
+            currentState.Exit();
+        }
+
+        currentState = newState;
+
+        if (currentState != null)
+        {
+            currentState.Enter(); // 异步加载新场景
         }
     }
 
     // 异步设置新的场景状态
-    async private void SetState(ISceneState newState)
+    async private void SetStateAsync(ISceneState newState)
     {
         AsyncOperation handle = SceneManager.LoadSceneAsync(newState.SceneName, LoadSceneMode.Single);
 
