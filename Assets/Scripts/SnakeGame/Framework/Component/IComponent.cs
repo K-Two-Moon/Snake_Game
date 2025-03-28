@@ -1,4 +1,3 @@
-
 /// <summary>
 /// 组件
 /// </summary>
@@ -27,6 +26,9 @@ public abstract class IComponent
     {
         obj.RemoveComponent(type);
     }
+    /// <summary>
+    /// 基类方法没有逻辑
+    /// </summary>
     public virtual void Update()
     {
 

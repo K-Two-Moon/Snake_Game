@@ -61,7 +61,7 @@ public abstract class IGameObject
 
     }
 
-    protected void AddComponent(ComponentType type)
+    public void AddComponent(ComponentType type)
     {
         if (componentDict.ContainsKey(type))
         {

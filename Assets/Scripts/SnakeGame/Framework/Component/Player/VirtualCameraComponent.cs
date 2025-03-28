@@ -1,28 +1,41 @@
-using UnityEngine;
-using Cinemachine; // 添加Cinemachine的命名空间引用
 
-public class PlayerInput : IComponent
+using Cinemachine;
+
+using UnityEngine;
+/// <summary>
+/// 虚拟相机组件
+/// </summary>
+public sealed class VirtualCameraComponent : IComponent
 {
     SnakePlayer player;
+    GameObject virtualCameraObj;
     /// <summary>
     /// 控制相机高度
     /// </summary>
     CinemachineTransposer cinemachineTransposer;
-    public PlayerInput(ComponentType type, IGameObject obj) : base(type, obj)
+    public VirtualCameraComponent(ComponentType type, IGameObject obj) : base(type, obj)
     {
-        player = obj as SnakePlayer;
     }
 
     public override void Initialize()
     {
         base.Initialize();
+        player = obj as SnakePlayer;
+        CreateVlam();
+
+    }
+    /// <summary>
+    /// 创建虚拟相机
+    /// </summary>
+    private void CreateVlam()
+    {
         // 创建虚拟相机
-        GameObject virtualCameraObj = new GameObject("VirtualCamera");
+        virtualCameraObj = new GameObject("VirtualCamera");
         CinemachineVirtualCamera vlam = virtualCameraObj.AddComponent<CinemachineVirtualCamera>();
 
-        vlam.Follow = player.Obj.transform;
-        vlam.LookAt = player.Obj.transform;
-
+        //跟随蛇的头部
+        vlam.Follow = player.head;
+        vlam.LookAt = player.head;
 
         // 添加并配置 Transposer（Body）组件
         cinemachineTransposer = vlam.AddCinemachineComponent<CinemachineTransposer>();
@@ -35,5 +48,10 @@ public class PlayerInput : IComponent
         composer.m_LookaheadTime = 0.1f;
     }
 
- 
+    public override void Destroy()
+    {
+        // 销毁虚拟相机
+        GameObject.Destroy(cinemachineTransposer);
+        base.Destroy();
+    }
 }

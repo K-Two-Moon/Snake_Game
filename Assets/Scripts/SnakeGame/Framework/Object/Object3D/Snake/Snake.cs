@@ -1,17 +1,17 @@
-using System;
 using System.Collections.Generic;
-using System.Transactions;
 using UnityEngine;
 
 public abstract class Snake : Object3D
 {
     protected SnakeData data;
     List<Transform> list = new List<Transform>();
+    /// <summary>
+    /// 蛇头
+    /// </summary>
+    public Transform head;
 
-    public override void InitializeData(IData data)
+    public Snake()
     {
-        this.data = data as SnakeData;
-
         //创建父节点
         if (parent3D != null)
         {
@@ -23,20 +23,32 @@ public abstract class Snake : Object3D
         {
             Debug.LogError("parent3D is null");
         }
+
+        SnakeData snakeData = new SnakeData(ConfigManager.Instance.GetSnakeConfig(1) as SnakeConfig);
+        InitializeData(snakeData);
+        Create();
+    }
+
+    public override void InitializeData(IData data)
+    {
+        this.data = data as SnakeData;
     }
 
     public override void Create()
     {
         //创建头
-        Transform head = GameObject.Instantiate(data.config.head).transform;
+        head = GameObject.Instantiate(data.config.head).transform;
         head.SetParent(obj.transform);
         head.position = Vector3.zero;
         list.Add(head);
 
         //创建身体
-        Transform body = GameObject.Instantiate(data.config.body).transform;
-        body.SetParent(obj.transform);
-        list.Add(body);
+        for (int i = 0; i < data.bodyLength; i++)
+        {
+            Transform body = GameObject.Instantiate(data.config.body).transform;
+            body.SetParent(obj.transform);
+            list.Add(body);
+        }
 
         //创建尾巴
         Transform tail = GameObject.Instantiate(data.config.tail).transform;

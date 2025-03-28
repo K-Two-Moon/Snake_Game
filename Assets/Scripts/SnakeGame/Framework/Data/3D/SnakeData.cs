@@ -5,6 +5,10 @@ using UnityEngine;
 public class SnakeData : IData
 {
     /// <summary>
+    /// 蛇的等级
+    /// </summary>
+    public uint lv;
+    /// <summary>
     /// 蛇身体的长度
     /// </summary>
     public uint bodyLength;
@@ -33,8 +37,11 @@ public class SnakeData : IData
     public SnakeData(SnakeConfig config) //蛇只有7种颜色配置
     {
         this.config = config;
-        //初始化蛇的身体长度为1
-        bodyLength = 1;
+
+        lv = 1;
+
+        //初始化蛇的身体长度为2
+        bodyLength = 2;
 
         followDistance = 1.5f;
 
