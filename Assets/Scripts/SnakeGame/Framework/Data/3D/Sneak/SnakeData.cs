@@ -61,10 +61,10 @@ public class SnakeData : IData
         direcction = Quaternion.LookRotation(v3);
     }
 
-    internal void PlayerInitLevel(int level,int speed,int upgrade)
+    internal void PlayerInitLevel(int level, int speed, int upgrade)
     {
         bodyLength = (uint)level;
-        moveSpeed=speed;
+        moveSpeed = 5;//speed;
     }
 }
 

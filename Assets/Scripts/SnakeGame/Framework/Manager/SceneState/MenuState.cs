@@ -18,8 +18,8 @@ internal class MenuState : SceneState
 
         facade = new GameSystemFacade();
 
-        facade.AddModule(new MenuSceneInputModule());
-        facade.AddModule(new MenuSceneObjectModule());
+        facade.AddModule(new MenuSceneInputModule(controller));
+        facade.AddModule(new MenuSceneObjectModule(controller));
 
         facade.Initialize();
     }

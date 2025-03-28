@@ -7,7 +7,7 @@ using UnityEngine;
 /// </summary>
 public sealed class VirtualCameraComponent : IComponent
 {
-    SnakePlayer player;
+    Snake player;
     GameObject virtualCameraObj;
     /// <summary>
     /// 控制相机高度
@@ -15,14 +15,13 @@ public sealed class VirtualCameraComponent : IComponent
     CinemachineTransposer cinemachineTransposer;
     public VirtualCameraComponent(ComponentType type, IGameObject obj) : base(type, obj)
     {
+        player = obj as Snake;
     }
 
     public override void Initialize()
     {
         base.Initialize();
-        player = obj as SnakePlayer;
         CreateVlam();
-
     }
     /// <summary>
     /// 创建虚拟相机
@@ -36,6 +35,7 @@ public sealed class VirtualCameraComponent : IComponent
 
         //跟随蛇的头部
         vlam.Follow = player.head;
+
         //vlam.LookAt = player.head;   看向会导致跟着旋转
 
 
