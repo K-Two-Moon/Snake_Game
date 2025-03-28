@@ -114,5 +114,6 @@ public abstract class Snake : Object3D
                 currentPart.rotation = Quaternion.RotateTowards(currentPart.rotation, targetRotation, data.rotationSpeed * deltaTime * 2);
             }
         }
+        Debug.Log(data.moveSpeed);
     }
 }

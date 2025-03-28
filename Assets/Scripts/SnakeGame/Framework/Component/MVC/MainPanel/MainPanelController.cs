@@ -16,11 +16,11 @@ public class MainPanelController : IComponent
 
     public override void Initialize()
     {
-        //接收网络消息
+        //???????????
         BindNetEvent();
-        //接收UI消息
+        //????UI???
         BindUIEvent();
-        //第一次初始化
+        //????γ????
         UpdateItem();
         
     }
@@ -31,8 +31,8 @@ public class MainPanelController : IComponent
         view.ShowMainDiamond(model.data.diamond);
         view.btn_start.onClick.AddListener(() => 
         {
-            //开始游戏
-            Debug.Log("开始游戏");
+            //??????
+            Debug.Log("??????");
         });
     }
 
@@ -55,6 +55,9 @@ public class MainPanelController : IComponent
         MessageManager.AddListener(CMD.ShowMonwy,()=>
         {
             view.ShowMainMoney(model.data.money);
+        });
+        MessageManager.AddListener(CMD.UpdataPlayerLevel,()=>{
+            //调用更新的事件
         });
     }
 

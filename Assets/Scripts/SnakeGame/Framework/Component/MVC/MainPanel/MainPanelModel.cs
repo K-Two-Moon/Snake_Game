@@ -1,16 +1,20 @@
 using System.Collections.Generic;
+using Unity.Plastic.Newtonsoft.Json;
+using UnityEngine;
 
 public class MainPanelModel
 {
     private MainPanel obj;
 
     public MainPanelData data;
-    
+
     public List<ItemData> items = new List<ItemData>();//三个Item的数据
 
-    public int speed =1;//初始速度
-    public int level=1;//初始等级
-    public int Upgrade=1;//初始进攻范围
+    public int speed = 1;//初始速度
+    public int level = 1;//初始等级
+    public int Upgrade = 1;//初始进攻范围
+
+    PlayerSingletonData info;
 
     public MainPanelModel(IGameObject obj)
     {
@@ -23,11 +27,14 @@ public class MainPanelModel
     /// </summary>
     internal void Initialize()
     {
-        items.Add( new ItemData {id = 1,level = 1,sum = 0,item = data.confing.itemArray[0]} );
-        items.Add( new ItemData {id = 2,level = 1,sum = 0,item = data.confing.itemArray[1]} );
-        items.Add( new ItemData {id = 3,level = 1,sum = 0,item = data.confing.itemArray[2]} );
+        info = JsonConvert.DeserializeObject<PlayerSingletonData>(Resources.Load<TextAsset>("playerInfo").text);
+        items.Add(new ItemData { id = 1, level = info.initStartlevel, sum = 0, item = data.confing.itemArray[0] });
+        items.Add(new ItemData { id = 2, level = info.speed, sum = 0, item = data.confing.itemArray[1] });
+        items.Add(new ItemData { id = 3, level = info.Upgrade, sum = 0, item = data.confing.itemArray[2] });
         data.money = 3000;//测试初始金币
         SetSumNum();
+        UpdataPlayerData();//第一次 更新Player单例的数据
+        ConfigManager.Instance.SetPlayerSneakData();//持久化
     }
 
     /// <summary>
@@ -68,32 +75,38 @@ public class MainPanelModel
     /// </summary>
     public void AddLevel(int index)
     {
-        if(items[index].sum<= data.money)
+        if (items[index].sum <= data.money)
         {
             items[index].level++;
             data.money -= items[index].sum;
             SetSumNum();
-            if(index==0)
+            if (index == 0)
             {
-                level +=1;
-                MessageManager.Broadcast(CMD.AddLevel,level);
+                level += 1;
             }
-            if(index==1)
+            if (index == 1)
             {
-                speed +=1;
-                MessageManager.Broadcast(CMD.AddSpeed,speed);
+                speed += 1;
             }
-            if(index==2)
+            if (index == 2)
             {
-                Upgrade +=1;
-                MessageManager.Broadcast(CMD.AddUpgrade,Upgrade);
+                Upgrade += 1;
             }
+            UpdataPlayerData();
         }
         else
         {
             //金币不足
         }
         MessageManager.Broadcast(CMD.ShowLevel);
+    }
+
+    /// <summary>
+    /// 更新玩家的单例数据
+    /// </summary>
+    public void UpdataPlayerData()
+    {
+        PlayerSneakDataSingleton.Instance.SetData(level,speed,Upgrade);
     }
 }
 

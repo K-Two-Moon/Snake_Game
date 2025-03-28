@@ -1,4 +1,7 @@
 using System.Collections.Generic;
+using System.IO;
+using Unity.Plastic.Newtonsoft.Json;
+using UnityEditor;
 using UnityEngine;
 
 public class ConfigManager : Singleton<ConfigManager>
@@ -27,6 +30,19 @@ public class ConfigManager : Singleton<ConfigManager>
             snakeConfigDict.Add(config.id, config);
         }
     }
+
+    public void SetPlayerSneakData()
+    {
+        string jsonPlayer = JsonConvert.SerializeObject(PlayerSneakDataSingleton.Instance.playerData, Formatting.Indented);
+        //string filePath = Path.Combine(Application.persistentDataPath, "playerInfo.json");
+        //测试路径
+        string filePath = Path.Combine(Application.dataPath + "/Resources/", "playerInfo.json");
+        Debug.Log(filePath);
+        File.WriteAllText(filePath, jsonPlayer);
+        AssetDatabase.Refresh();
+    }
+
+    
 
     public void Dispose()
     {
