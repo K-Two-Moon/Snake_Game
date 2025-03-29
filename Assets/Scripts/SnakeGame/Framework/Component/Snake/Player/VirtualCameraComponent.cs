@@ -58,7 +58,7 @@ public sealed class VirtualCameraComponent : IComponent
     public override void Destroy()
     {
         // 销毁虚拟相机
-        GameObject.Destroy(cinemachineTransposer);
+        GameObject.Destroy(virtualCameraObj);
         base.Destroy();
     }
 }

@@ -32,6 +32,19 @@ public class World : Singleton<World>
         }
     }
 
+    public IGameObject GetObjectById(uint id)
+    {
+        if (allObjectDict.ContainsKey(id))
+        {
+            return allObjectDict[id];
+        }
+        else
+        {
+            Debug.LogError("没有这个对象");
+            return null;
+        }
+    }
+
     public void Destroy()
     {
         RemoveAllObject();
@@ -39,7 +52,8 @@ public class World : Singleton<World>
 
     void RemoveAllObject()
     {
-        foreach (var obj in allObjectDict.Values)
+        List<IGameObject> list = new List<IGameObject>(allObjectDict.Values);
+        foreach (IGameObject obj in list)
         {
             obj.Destroy();
         }

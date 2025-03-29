@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class SnakeEnemy : Snake
 {
     protected override void OnCreate()
