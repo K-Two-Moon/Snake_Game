@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Codice.CM.Common;
 using Unity.Plastic.Newtonsoft.Json;
 using UnityEngine;
 
@@ -31,9 +32,14 @@ public class MainPanelModel
         items.Add(new ItemData { id = 1, level = info.initStartlevel, sum = 0, item = data.confing.itemArray[0] });
         items.Add(new ItemData { id = 2, level = info.speed, sum = 0, item = data.confing.itemArray[1] });
         items.Add(new ItemData { id = 3, level = info.Upgrade, sum = 0, item = data.confing.itemArray[2] });
-        data.money = 3000;//测试初始金币
+        speed = info.speed;
+        level = info.initStartlevel;
+        Upgrade = info.Upgrade;
+        data.money = 50000;//测试初始金币
         SetSumNum();
+        
         UpdataPlayerData();//第一次 更新Player单例的数据
+        
         ConfigManager.Instance.SetPlayerSneakData();//持久化
     }
 

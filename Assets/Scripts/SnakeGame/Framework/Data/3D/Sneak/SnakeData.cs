@@ -64,7 +64,7 @@ public class SnakeData : IData
     internal void PlayerInitLevel(int level, int speed, int upgrade)
     {
         bodyLength = (uint)level;
-        moveSpeed = 5;//speed;
+        moveSpeed=speed;
     }
 }
 

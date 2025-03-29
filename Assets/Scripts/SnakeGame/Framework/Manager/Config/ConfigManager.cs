@@ -42,7 +42,16 @@ public class ConfigManager : Singleton<ConfigManager>
         AssetDatabase.Refresh();
     }
 
-    
+    public void SetMainData()
+    {
+        string jsonPlayer = JsonConvert.SerializeObject(PlayerSneakDataSingleton.Instance.playerData, Formatting.Indented);
+        //string filePath = Path.Combine(Application.persistentDataPath, "playerInfo.json");
+        //测试路径
+        string filePath = Path.Combine(Application.dataPath + "/Resources/", "main.json");
+        Debug.Log(filePath);
+        File.WriteAllText(filePath, jsonPlayer);
+        AssetDatabase.Refresh();
+    }
 
     public void Dispose()
     {

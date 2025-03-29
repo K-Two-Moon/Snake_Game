@@ -6,7 +6,7 @@ using UnityEngine;
 //2.菜单名
 
 //3.索引
-[CreateAssetMenu(fileName = "MainPanel", menuName = "配置表UI/main", order = 0)]
+[CreateAssetMenu(fileName = "MainConfig", menuName = "配置表UI/main", order = 0)]
 public class MainPanelConfing : IConfig
 {
     public GameObject mainPanel;
@@ -58,6 +58,10 @@ public class MainPanelConfing : IConfig
         itemArray[2].down_icon_false = Resources.Load<Sprite>("Texture2D/ICN_ad");
 
         itemArray[2].level_Num = 800;
+
+        parent = Resources.Load<GameObject>("UIPrefab/ItemWindow").transform;
+
+        parent_pos = new Vector2(0,-950);
     }
 }
 

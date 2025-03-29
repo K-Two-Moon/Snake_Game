@@ -36,13 +36,14 @@ public abstract class IGameObject
 
     public virtual void Destroy()
     {
+
         //先销毁组件
         foreach (IComponent component in componentDict.Values)
         {
             component.Destroy();
         }
         //在World中移除对象
-        World.Instance.RemoveObject(id);
+        //World.Instance.RemoveObject(id);
 
         GameObject.Destroy(obj);
     }
