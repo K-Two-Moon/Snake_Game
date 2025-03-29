@@ -13,7 +13,6 @@ public class SnakePlayer : Snake
     public override void Destroy()
     {
         base.Destroy();
-
     }
 
     protected override void OnCreate()

@@ -7,7 +7,7 @@ using UnityEngine;
 /// </summary>
 public sealed class VirtualCameraComponent : IComponent
 {
-    SnakePlayerMode player;
+    Snake player;
     GameObject virtualCameraObj;
     /// <summary>
     /// 控制相机高度
@@ -15,7 +15,7 @@ public sealed class VirtualCameraComponent : IComponent
     CinemachineTransposer cinemachineTransposer;
     public VirtualCameraComponent(ComponentType type, IGameObject obj) : base(type, obj)
     {
-        player = obj as SnakePlayerMode;
+        player = obj as Snake;
     }
 
     public override void Initialize()

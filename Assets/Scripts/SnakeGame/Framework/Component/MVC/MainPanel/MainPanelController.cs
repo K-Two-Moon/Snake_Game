@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class MainPanelController : IComponent
 {
@@ -18,7 +18,7 @@ public class MainPanelController : IComponent
         BindNetEvent();
         //????UI???
         BindUIEvent();
-        //????��????
+        //????γ????
         UpdateItem();
         
     }
@@ -27,11 +27,11 @@ public class MainPanelController : IComponent
     {
         view.ShowMainMoney(model.data.money);
         view.ShowMainDiamond(model.data.diamond);
-        view.btn_start.onClick.AddListener(() => 
-        {
-            //??????
-            Debug.Log("??????");
-        });
+        //view.btn_start.onClick.AddListener(() => 
+        //{
+        //    //??????
+        //    Debug.Log("??????");
+        //});
     }
 
     public void BindNetEvent()
@@ -55,7 +55,7 @@ public class MainPanelController : IComponent
             view.ShowMainMoney(model.data.money);
         });
         MessageManager.AddListener(CMD.UpdataPlayerLevel,()=>{
-            //���ø��µ��¼�
+            //调用更新的事件
         });
     }
 

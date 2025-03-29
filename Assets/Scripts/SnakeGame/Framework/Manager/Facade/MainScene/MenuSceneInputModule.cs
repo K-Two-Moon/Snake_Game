@@ -40,6 +40,11 @@ public class MenuSceneInputModule : IModule
                             // 在这里处理点击逻辑
                             MessageManager.Broadcast(CMD.Child, result.gameObject.name);
                         }
+                        if (result.gameObject.tag == "SceneState")
+                        {
+                            controller.ChangeState(SceneStateEnum.Game);
+                            Debug.Log("111");
+                        }
                     }
                 }
             }

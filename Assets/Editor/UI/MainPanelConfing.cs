@@ -6,7 +6,7 @@ using UnityEngine;
 //2.菜单名
 
 //3.索引
-[CreateAssetMenu(fileName = "MainPanel", menuName = "配置表UI/main", order = 0)]
+[CreateAssetMenu(fileName = "MainConfig", menuName = "配置表UI/main", order = 0)]
 public class MainPanelConfing : IConfig
 {
     public GameObject mainPanel;
