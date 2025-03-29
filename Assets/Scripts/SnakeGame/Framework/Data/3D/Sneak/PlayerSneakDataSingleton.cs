@@ -6,9 +6,9 @@ public class PlayerSneakDataSingleton : Singleton<PlayerSneakDataSingleton>
 {
     public PlayerSingletonData playerData = new PlayerSingletonData();
 
-    public int initStartlevel;//初始等级
+    public int initStartlevel=1;//初始等级
 
-    public int speed;//初始速度
+    public int speed = 1;//初始速度
 
     public int Upgrade;//初始进攻范围
 

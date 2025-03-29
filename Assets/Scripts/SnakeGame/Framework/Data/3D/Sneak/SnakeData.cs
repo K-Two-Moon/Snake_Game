@@ -65,6 +65,7 @@ public class SnakeData : IData
     {
         bodyLength = (uint)level;
         moveSpeed=speed;
+        Debug.Log("这是赋值，应该是2");
     }
 }
 

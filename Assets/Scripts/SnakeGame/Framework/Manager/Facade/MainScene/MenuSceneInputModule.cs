@@ -43,7 +43,6 @@ public class MenuSceneInputModule : IModule
                         if (result.gameObject.tag == "SceneState")
                         {
                             controller.ChangeState(SceneStateEnum.Game);
-                            Debug.Log("111");
                         }
                     }
                 }

@@ -1,11 +1,13 @@
 using System;
+using System.Diagnostics;
 
 public class SnakePlayer : Snake
 {
     public override void InitializeData(IData dataConfig)
     {
         base.InitializeData(dataConfig);
-        data.PlayerInitLevel(PlayerSneakDataSingleton.Instance.initStartlevel,PlayerSneakDataSingleton.Instance.speed,PlayerSneakDataSingleton.Instance.Upgrade);
+        
+        data.PlayerInitLevel(PlayerSneakDataSingleton.Instance.playerData.initStartlevel,PlayerSneakDataSingleton.Instance.playerData.speed,PlayerSneakDataSingleton.Instance.playerData.Upgrade);
     }
 
 
