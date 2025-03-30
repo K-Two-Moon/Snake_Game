@@ -93,6 +93,8 @@ public abstract class Snake : Object3D
         //HeadMove(deltaTime);
         //BodyAndTailMove(deltaTime);
 
+        //每帧都更新等级
+        data.lv = data.bodyLength * 10 - 9;
     }
 
     private void HeadMove(float deltaTime)

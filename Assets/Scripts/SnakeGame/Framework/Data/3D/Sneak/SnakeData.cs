@@ -1,7 +1,3 @@
-
-
-using System;
-using log4net.Core;
 using UnityEngine;
 
 public class SnakeData : IData
@@ -64,7 +60,7 @@ public class SnakeData : IData
     internal void PlayerInitLevel(int level, int speed, int upgrade)
     {
         bodyLength = (uint)level;
-        moveSpeed=speed;
+        moveSpeed = speed;
     }
 }
 

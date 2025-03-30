@@ -16,13 +16,18 @@ public class DetectObjectAheadComponent : IComponent
     public override void Update()
     {
         Transform head = snake.head;
-    
+
         //头部发射射线
         Ray ray = new Ray(head.position, head.forward);
+        Debug.DrawRay(ray.origin, ray.direction, Color.red);
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, 100, 1 << 3 | 1 << 6))
+        if (Physics.Raycast(ray, out hit, 1, 1 << 3 | 1 << 6))
         {
-            int layer = hit.collider.transform.parent.gameObject.layer;
+            // Debug.Log(hit.collider.name);
+            // Debug.Log(hit.collider.transform.parent.gameObject.name);
+
+            int layer = hit.transform.gameObject.layer;
+            // Debug.Log("layer:" + layer);
             uint id = uint.Parse(hit.collider.transform.parent.gameObject.name);
             Snake obj = World.Instance.GetObjectById(id) as Snake;
             if (obj == null)
@@ -31,19 +36,16 @@ public class DetectObjectAheadComponent : IComponent
                 return;
             }
 
-            //高lv
-            Snake lvHigh = null;
             //低lv
             Snake lvLow = null;
+            Debug.Log("lv:"+ snake.data.lv + "  " + obj.data.lv);
             //对比谁的等级高低
             if (snake.data.lv > obj.data.lv)
             {
-                lvHigh = snake;
                 lvLow = obj;
             }
             else
             {
-                lvHigh = obj;
                 lvLow = snake;
             }
 
@@ -51,13 +53,13 @@ public class DetectObjectAheadComponent : IComponent
             //蛇头撞蛇头
             if (layer == 3)
             {
-                lvLow.Destroy();
-
+                //World.Instance.AddToDestoryObjectBuffer(lvLow.Id);
+                Debug.Log("撞头了" + lvLow.Obj.name);
             }
             //蛇头撞蛇的身体
             if (layer == 6)
             {
-                //
+                Debug.Log("撞身体了" + lvLow.Obj.name);
             }
         }
     }

@@ -8,12 +8,17 @@ public class World : Singleton<World>
     /// All objects in the world.
     /// </summary>
     Dictionary<uint, IGameObject> allObjectDict;
+    /// <summary>
+    /// 销毁队列缓存
+    /// </summary>
+    Queue<uint> destroyQueue;
 
     static uint nextId = 0;
 
     public void Initialize()
     {
         allObjectDict = new Dictionary<uint, IGameObject>();
+        destroyQueue = new Queue<uint>();
     }
 
     public void AddObject(IGameObject obj)
@@ -23,11 +28,13 @@ public class World : Singleton<World>
         nextId++;
     }
 
-    public void RemoveObject(uint id)
+    void RemoveObject(uint id)
     {
         if (allObjectDict.ContainsKey(id))
         {
-            //移除对象
+            IGameObject obj = allObjectDict[id];
+            obj.Destroy();
+            //世界中移除对象的注册
             allObjectDict.Remove(id);
         }
     }
@@ -45,12 +52,8 @@ public class World : Singleton<World>
         }
     }
 
-    public void Destroy()
-    {
-        RemoveAllObject();
-    }
 
-    void RemoveAllObject()
+    public void RemoveAllObject()
     {
         List<IGameObject> list = new List<IGameObject>(allObjectDict.Values);
         foreach (IGameObject obj in list)
@@ -62,6 +65,14 @@ public class World : Singleton<World>
         allObjectDict = null;
     }
 
+    /// <summary>
+    /// 外部销毁对象先放在这个缓存中，再帧最后统一销毁
+    /// </summary>
+    public void AddToDestoryObjectBuffer(uint id)
+    {
+        destroyQueue.Enqueue(id);
+    }
+
 
     public void Update()
     {
@@ -69,6 +80,16 @@ public class World : Singleton<World>
         foreach (IGameObject item in allObjectDict.Values)
         {
             item.Update(dayTime);
+        }
+
+        //销毁缓存中的对象
+        if (destroyQueue.Count > 0)
+        {
+            while (destroyQueue.Count > 0)
+            {
+                uint id = destroyQueue.Dequeue();
+                RemoveObject(id);
+            }
         }
     }
 }
