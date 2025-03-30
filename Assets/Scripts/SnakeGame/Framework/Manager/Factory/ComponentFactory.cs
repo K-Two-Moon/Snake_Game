@@ -24,7 +24,6 @@ public enum ComponentType
     DetectObjectAheadComponent,
 
 
-
     /// <summary>
     /// UI的C层组件
     /// </summary>

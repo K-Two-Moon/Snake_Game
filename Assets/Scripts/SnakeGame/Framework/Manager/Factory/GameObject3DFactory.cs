@@ -4,7 +4,7 @@ using UnityEngine;
 /// <summary>
 /// 产品类型
 /// </summary>
-public enum GameObject3DType
+public enum Object3DType
 {
     /// <summary>
     /// 蛇(玩家)
@@ -27,11 +27,11 @@ public enum GameObject3DType
 
 
 /// <summary>
-/// 2D游戏对象工厂
+/// 3D对象工厂
 /// </summary>
-public static class GameObject3DFactory
+public static class Object3DFactory
 {
-    public static IGameObject CreateProduct(GameObject3DType type)
+    public static IGameObject CreateProduct(Object3DType type)
     {
         IGameObject product = null;
         product = SwitchBuilder(type);
@@ -43,12 +43,13 @@ public static class GameObject3DFactory
         return product;
     }
 
-    private static IGameObject SwitchBuilder(GameObject3DType type) => type switch
+    private static IGameObject SwitchBuilder(Object3DType type) => type switch
     {
-        GameObject3DType.SnakePlayer => new SnakePlayer(),
-        GameObject3DType.SnakePlayerModle => new SnakePlayerMode(),
-        GameObject3DType.SnakeEnemy => new SnakeEnemy(),
+        Object3DType.SnakePlayer => new SnakePlayer(),
+        Object3DType.SnakePlayerModle => new SnakePlayerMode(),
+        Object3DType.SnakeEnemy => new SnakeEnemy(),
 
+        Object3DType.Food => new Food(),
         _ => null,
     };
 }

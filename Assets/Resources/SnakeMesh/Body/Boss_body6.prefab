@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 1939455925547593465}
   - component: {fileID: 5965418923424597163}
   - component: {fileID: 6023800241542514507}
-  - component: {fileID: 1977920628990536550}
   m_Layer: 0
   m_Name: Boss_body6
   m_TagString: body
@@ -84,24 +83,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &1977920628990536550
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2886850520438337450}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.3644165, y: 1.2202953, z: 1.8234565}
-  m_Center: {x: 0, y: 0.64259773, z: -0.21913615}

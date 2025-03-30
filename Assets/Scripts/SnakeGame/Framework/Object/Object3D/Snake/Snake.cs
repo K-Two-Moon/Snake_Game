@@ -46,6 +46,7 @@ public abstract class Snake : Object3D
         for (int i = 0; i < data.bodyLength; i++)
         {
             Transform body = Object.Instantiate(data.config.body).transform;
+            body.name = "body" + i;
             body.SetParent(obj.transform);
             list.Add(body);
         }
@@ -64,13 +65,13 @@ public abstract class Snake : Object3D
             child.position = Vector3.back * data.followDistance;
         }
 
-        //设置头部的层级
-        head.gameObject.layer = LayerMask.NameToLayer("SnakeHead");
-        //设置身体的层级
-        for (int i = 1; i < list.Count; i++)
-        {
-            list[i].gameObject.layer = LayerMask.NameToLayer("SnakeBody");
-        }
+        // //设置头部的层级
+        // head.gameObject.layer = LayerMask.NameToLayer("SnakeHead");
+        // //设置身体的层级
+        // for (int i = 1; i < list.Count; i++)
+        // {
+        //     list[i].gameObject.layer = LayerMask.NameToLayer("SnakeBody");
+        // }
 
 
         base.Create();
@@ -78,7 +79,7 @@ public abstract class Snake : Object3D
 
     protected override void OnCreate()
     {
-        AddComponent(ComponentType.DetectObjectAheadComponent);
+        //AddComponent(ComponentType.DetectObjectAheadComponent);
         base.OnCreate();
     }
 

@@ -1,5 +1,4 @@
 using UnityEngine;
-using System;
 using Object = UnityEngine.Object; // 添加Cinemachine的命名空间引用
 
 public class PlayerInputComponent : IComponent
@@ -32,6 +31,11 @@ public class PlayerInputComponent : IComponent
     }
     public override void Destroy()
     {
+        if (currentJoystick)
+        {
+            Object.Destroy(currentJoystick);
+            currentJoystick = null;
+        }
         base.Destroy();
     }
 
@@ -100,7 +104,7 @@ public class PlayerInputComponent : IComponent
         if (!Input.GetMouseButtonUp(0) || currentJoystick == null) return;
 
         // 可在销毁前添加状态重置、事件通知等逻辑
-        GameObject.Destroy(currentJoystick);
+        Object.Destroy(currentJoystick);
         currentJoystick = null;
     }
 
