@@ -26,7 +26,7 @@ public class MenuSceneObjectModule : IModule
 
 
 
-        Snake playerModel = GameObject3DFactory.CreateProduct(GameObject3DType.SnakePlayerModle) as Snake;
+        Snake playerModel = Object3DFactory.CreateProduct(Object3DType.SnakePlayerModle) as Snake;
         SnakeData snakeData = new SnakeData(ConfigManager.Instance.GetSnakeConfig(1) as SnakeConfig);
         playerModel.InitializeData(snakeData);
         playerModel.Create();

@@ -27,7 +27,7 @@ public abstract class IComponent
     /// </summary>
     public virtual void Destroy()
     {
-        //obj.RemoveComponent(type);
+        obj.RemoveComponent(type);
     }
     /// <summary>
     /// 基类方法没有逻辑

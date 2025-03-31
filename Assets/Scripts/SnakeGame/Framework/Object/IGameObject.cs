@@ -31,20 +31,24 @@ public abstract class IGameObject
     /// </summary>
     protected virtual void OnCreate()
     {
-        
+
     }
 
+    /// <summary>
+    /// 不能再组件中调用,否则很可能报错
+    /// </summary>
     public virtual void Destroy()
     {
-
         //先销毁组件
-        foreach (IComponent component in componentDict.Values)
+        List<IComponent> list = new List<IComponent>(componentDict.Values);
+        foreach (IComponent component in list)
         {
             component.Destroy();
         }
         //在World中移除对象
-        //World.Instance.RemoveObject(id);
+        // World.Instance.DestroyObjectToBuffer(id);
 
+        componentDict.Clear();
         GameObject.Destroy(obj);
     }
 

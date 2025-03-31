@@ -1,21 +1,30 @@
 using UnityEngine;
 
-internal class GameState : SceneState
+public class GameState : SceneState
 {
-    GameSystemFacade facade;
+    public GameSystemFacade facade;
+
+    GameSceneObjectModule objectModule;
+    GameSceneCommandModule commandModule;
+    public GameSceneObjectModule ObjectModule => objectModule;
+    public GameSceneCommandModule CommandModule => commandModule;
+
     public GameState(SceneStateController controller) : base(controller)
     {
         sceneName = SceneStateEnum.Game.ToString();
     }
+
 
     public override void Enter()
     {
         base.Enter();
 
         facade = new GameSystemFacade();
+        objectModule = new GameSceneObjectModule(this);
+        commandModule = new GameSceneCommandModule(this);
 
-        facade.AddModule(new GameSceneInputModule());
-        facade.AddModule(new GameSceneObjectModule());
+        facade.AddModule(objectModule);
+        facade.AddModule(commandModule);
 
         facade.Initialize();
     }

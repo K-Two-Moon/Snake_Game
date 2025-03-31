@@ -46,6 +46,7 @@ public abstract class Snake : Object3D
         for (int i = 0; i < data.bodyLength; i++)
         {
             Transform body = Object.Instantiate(data.config.body).transform;
+            body.name = "body" + i;
             body.SetParent(obj.transform);
             list.Add(body);
         }
@@ -71,6 +72,7 @@ public abstract class Snake : Object3D
     protected override void OnCreate()
     {
         AddComponent(ComponentType.SnakeLvUIView);
+        //AddComponent(ComponentType.DetectObjectAheadComponent);
         base.OnCreate();
     }
 
@@ -85,6 +87,8 @@ public abstract class Snake : Object3D
         //HeadMove(deltaTime);
         //BodyAndTailMove(deltaTime);
 
+        //每帧都更新等级
+        data.lv = data.bodyLength * 10 - 9;
     }
 
     private void HeadMove(float deltaTime)

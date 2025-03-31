@@ -25,7 +25,7 @@ public class SnakeMoveComponent : IComponent
 
     private void HeadMove(float deltaTime)
     {
-        Transform head = list[0];
+        Transform head = snake.head;
 
         //蛇头方向
         head.rotation = data.direcction;

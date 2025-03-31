@@ -16,4 +16,10 @@ public abstract class Object3D : IGameObject
             }
         }
     }
+
+    public override void Create()
+    {
+        base.Create();
+        obj.name = Id.ToString();
+    }
 }

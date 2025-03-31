@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 <<<<<<<< HEAD:Assets/Scripts/SnakeGame/Framework/Component/Snake/SnakeLvUIView.cs.meta
-guid: 5f25e2ea308143b4eb08fbf934972c40
+guid: ad9c9425fdcb89c4285e9435b4fcb05f
 ========
 guid: dc655da863e30d34b81e4a4e450fc040
 >>>>>>>> ed5593ab779170108ac38add5ff66634b298a777:Assets/Scripts/SnakeGame/Framework/Component/Snake/DetectObjectAheadComponent.cs.meta

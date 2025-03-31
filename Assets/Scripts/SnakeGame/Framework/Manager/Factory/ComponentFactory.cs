@@ -2,19 +2,32 @@ using UnityEngine;
 
 public enum ComponentType
 {
-    //玩家组件
+    /// <summary>
+    /// 玩家组件
+    /// </summary>
     PlayerInput,
     VirtualCameraComponent,
 
 
-    //敌人组件
+    /// <summary>
+    /// 敌人组件
+    /// </summary>
     EnemyAI,
 
-    //蛇的移动算法组件
+    /// <summary>
+    /// 蛇的移动算法组件
+    /// </summary>
     SnakeMove,
+    /// <summary>
+    /// 蛇头检测前方对象组件
+    /// </summary>
+    DetectObjectAheadComponent,
 
 
-
+    /// <summary>
+    /// UI的C层组件
+    /// </summary>
+    MainPanelController
     //UI的C层组件
     MainPanelController,
 
@@ -52,6 +65,9 @@ public static class ComponentFactory
 
         //================蛇的移动算法组件
         ComponentType.SnakeMove => new SnakeMoveComponent(type, obj),
+
+        //================蛇头检测前方对象组件
+        ComponentType.DetectObjectAheadComponent => new DetectObjectAheadComponent(type, obj),
 
 
         //================UI的C层作为组件

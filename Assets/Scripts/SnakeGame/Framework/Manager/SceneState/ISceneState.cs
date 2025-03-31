@@ -34,7 +34,7 @@ public abstract class SceneState : ISceneState
     // 虚方法，用于退出场景状态时的处理
     public virtual void Exit()
     {
-        World.Instance.Destroy();
+        World.Instance.RemoveAllObject();
     }
 
     // 虚方法，用于场景状态更新时的处理
