@@ -11,6 +11,7 @@ public class CMD
 
     public const string ShowDiamond = "显示钻石";
     public const string ShowMonwy = "显示金币";
+    public const string AddMonwy = "显示金币";
 
     public const string AddLevel = "添加等级";
 

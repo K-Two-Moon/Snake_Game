@@ -2,7 +2,11 @@ using UnityEngine;
 
 public enum UIType
 {
-    MainPanel
+    /// <summary>
+    /// 主面板
+    /// </summary>
+    MainPanel,
+
 }
 
 
@@ -26,6 +30,7 @@ public static class UIFactory
     private static ObjectUI SwitchBuilder(UIType type) => type switch
     {
         UIType.MainPanel => new MainPanel(),
+     
         _ => null,
     };
 }

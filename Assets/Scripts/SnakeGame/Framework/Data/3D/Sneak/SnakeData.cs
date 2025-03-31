@@ -36,6 +36,9 @@ public class SnakeData : IData
     public SnakeConfig config;
 
 
+
+
+
     public SnakeData(SnakeConfig config) //蛇只有7种颜色配置
     {
         this.config = config;
@@ -52,6 +55,9 @@ public class SnakeData : IData
         rotationSpeed = 360f;
 
         direcction = Quaternion.identity;
+
+        lv = bodyLength * 10 - 9;
+
     }
 
     public void SetDirection(Vector2 v2)
@@ -63,9 +69,10 @@ public class SnakeData : IData
 
     internal void PlayerInitLevel(int level,int speed,int upgrade)
     {
+        
         bodyLength = (uint)level;
         moveSpeed=speed;
-        Debug.Log("这是赋值，应该是2");
+        lv = bodyLength * 10 - 9;
     }
 }
 

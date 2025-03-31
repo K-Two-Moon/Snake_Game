@@ -9,6 +9,8 @@ public class World : Singleton<World>
     /// </summary>
     Dictionary<uint, IGameObject> allObjectDict;
 
+    List<Snake> snakeList = new List<Snake>();
+
     static uint nextId = 0;
 
     public void Initialize()
@@ -21,6 +23,12 @@ public class World : Singleton<World>
         allObjectDict.Add(nextId, obj);
         obj.SetId(nextId);
         nextId++;
+
+
+        if(obj is Snake)
+        {
+            snakeList.Add(obj as Snake);
+        }
     }
 
     public void RemoveObject(uint id)

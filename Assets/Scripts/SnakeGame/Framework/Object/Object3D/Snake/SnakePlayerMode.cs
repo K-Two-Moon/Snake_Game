@@ -9,5 +9,6 @@ public class SnakePlayerMode : Snake
         //添加VirtualCameraComponent组件
         AddComponent(ComponentType.VirtualCameraComponent);
         base.OnCreate();
+        RemoveComponent(ComponentType.SnakeLvUIView);
     }
 }

@@ -26,6 +26,21 @@ public class PlayerSneakDataSingleton : Singleton<PlayerSneakDataSingleton>
         return playerData;
     }
 
+    public void SetMoneyData(int startMoney)
+    {
+        playerData.mianMoney = startMoney;
+        ConfigManager.Instance.SetPlayerSneakData();//每改变一次持久化一次
+    }
+
+    /// <summary>
+    /// 添加金币接口
+    /// </summary>
+    /// <param name="money"></param>
+    public void SetAddMoney(int money)
+    {
+        playerData.mianMoney += money;
+        MessageManager.Broadcast(CMD.ShowMonwy, money);//添加金币
+    }
 }
 
 public class PlayerSingletonData
@@ -35,4 +50,6 @@ public class PlayerSingletonData
     public int speed;//初始速度
 
     public int Upgrade;//初始进攻范围
+
+    public int mianMoney;//初始金币
 }

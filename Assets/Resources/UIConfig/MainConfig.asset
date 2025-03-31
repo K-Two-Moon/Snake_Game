@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 9cc49384f0df24441bda7573998077ca, type: 3}
   m_Name: MainConfig
   m_EditorClassIdentifier: Editor::MainPanelConfing
   mainPanel: {fileID: 1635679434836882613, guid: 2a2eaf0759d2d754b916863071d6b0d8, type: 3}

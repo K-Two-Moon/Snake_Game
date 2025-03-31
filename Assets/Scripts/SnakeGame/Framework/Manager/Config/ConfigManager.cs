@@ -18,9 +18,13 @@ public class ConfigManager : Singleton<ConfigManager>
 
     public void Initialize()
     {
-        // 加载UI配置文件
+        // 加载UI主面板配置文件
         MainPanelConfing mainPanelConfing = Resources.Load<MainPanelConfing>("UIConfig/MainConfig");
         dict.Add(typeof(MainPanelConfing).Name, mainPanelConfing);
+
+        // 加载头顶等级
+        SneakLvUIViewConfig sneakLvUIViewConfig = Resources.Load<SneakLvUIViewConfig>("UIConfig/SneakLvUIViewConfig");
+        dict.Add(typeof(SneakLvUIViewConfig).Name, sneakLvUIViewConfig);
 
         // 加载蛇配置文件
         SnakeConfigArray snakeConfigArray = Resources.Load<SnakeConfigArray>("3DConfig/SnakeArray");
@@ -42,6 +46,9 @@ public class ConfigManager : Singleton<ConfigManager>
         AssetDatabase.Refresh();
     }
 
+    /// <summary>
+    /// 主面板数据持久（金币、钻石）
+    /// </summary>
     public void SetMainData()
     {
         string jsonPlayer = JsonConvert.SerializeObject(PlayerSneakDataSingleton.Instance.playerData, Formatting.Indented);

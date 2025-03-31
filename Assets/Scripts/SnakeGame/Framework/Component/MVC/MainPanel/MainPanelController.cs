@@ -52,6 +52,7 @@ public class MainPanelController : IComponent
         });
         MessageManager.AddListener(CMD.ShowMonwy,()=>
         {
+            model.ShowMoney();
             view.ShowMainMoney(model.data.money);
         });
         MessageManager.AddListener(CMD.UpdataPlayerLevel,()=>{

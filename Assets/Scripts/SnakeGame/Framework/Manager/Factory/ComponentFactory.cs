@@ -16,7 +16,11 @@ public enum ComponentType
 
 
     //UI的C层组件
-    MainPanelController
+    MainPanelController,
+
+    SnakeLvUIView
+
+
 }
 
 /// <summary>
@@ -52,6 +56,8 @@ public static class ComponentFactory
 
         //================UI的C层作为组件
         ComponentType.MainPanelController => new MainPanelController(type, obj),
+
+        ComponentType.SnakeLvUIView => new SnakeLvUIView(type, obj),
         _ => null
     };
 }

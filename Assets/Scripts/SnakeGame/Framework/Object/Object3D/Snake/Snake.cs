@@ -70,6 +70,7 @@ public abstract class Snake : Object3D
 
     protected override void OnCreate()
     {
+        AddComponent(ComponentType.SnakeLvUIView);
         base.OnCreate();
     }
 

@@ -28,6 +28,7 @@ public class MainPanelModel
     /// </summary>
     internal void Initialize()
     {
+        //解析数据
         info = JsonConvert.DeserializeObject<PlayerSingletonData>(Resources.Load<TextAsset>("playerInfo").text);
         items.Add(new ItemData { id = 1, level = info.initStartlevel, sum = 0, item = data.confing.itemArray[0] });
         items.Add(new ItemData { id = 2, level = info.speed, sum = 0, item = data.confing.itemArray[1] });
@@ -35,12 +36,14 @@ public class MainPanelModel
         speed = info.speed;
         level = info.initStartlevel;
         Upgrade = info.Upgrade;
-        data.money = 50000;//测试初始金币
+        //data.money = 50000;//测试初始金币
+        data.money = info.mianMoney;
         SetSumNum();
-        
+        //初始化金币
+        PlayerSneakDataSingleton.Instance.SetMoneyData(data.money);
         UpdataPlayerData();//第一次 更新Player单例的数据
-        Debug.Log("11111");
         ConfigManager.Instance.SetPlayerSneakData();//持久化
+
     }
 
     /// <summary>
@@ -54,6 +57,12 @@ public class MainPanelModel
 
     }
 
+    public int ShowMoney()
+    {
+        data.money = PlayerSneakDataSingleton.Instance.playerData.mianMoney;
+        return data.money;
+    }
+
     /// <summary>
     /// 添加钻石的方法
     /// </summary>
@@ -61,6 +70,8 @@ public class MainPanelModel
     public void AddDiamond(int num)
     {
         data.diamond += num;
+        //添加金币修改
+        PlayerSneakDataSingleton.Instance.SetMoneyData(data.money);
         //发消息到c
 
     }
@@ -85,6 +96,8 @@ public class MainPanelModel
         {
             items[index].level++;
             data.money -= items[index].sum;
+            //减少金币修改
+            PlayerSneakDataSingleton.Instance.SetMoneyData(data.money);
             SetSumNum();
             if (index == 0)
             {
@@ -112,7 +125,6 @@ public class MainPanelModel
     /// </summary>
     public void UpdataPlayerData()
     {
-        Debug.Log("这是初始化，应该为1"+speed);
         PlayerSneakDataSingleton.Instance.SetData(level,speed,Upgrade);
     }
 }

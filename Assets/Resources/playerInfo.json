@@ -1,5 +1,6 @@
 {
-  "initStartlevel": 3,
-  "speed": 6,
-  "Upgrade": 1
+  "initStartlevel": 5,
+  "speed": 9,
+  "Upgrade": 2,
+  "mianMoney": 2400
 }

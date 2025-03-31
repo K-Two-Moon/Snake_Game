@@ -41,3 +41,6 @@ MonoBehaviour:
     head: {fileID: 2732146533449461421, guid: c20c75960e4e8064cbac9c9d2991de29, type: 3}
     body: {fileID: 5940653010449741438, guid: e1125978023cb434b9944004dce4e76e, type: 3}
     tail: {fileID: 360682026158355844, guid: b480dad68f70348478160d61cb6ec210, type: 3}
+  snakeLvConfig:
+    T_lv: {fileID: 6104334919026358198, guid: caf98336716e64842928e7e390eb3b49, type: 3}
+    kingObj: {fileID: 4705987836445175326, guid: d1afce2280a69e44f8e49700c019d9d6, type: 3}
