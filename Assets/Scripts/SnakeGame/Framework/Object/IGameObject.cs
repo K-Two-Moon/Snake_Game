@@ -87,8 +87,9 @@ public abstract class IGameObject
     {
         if (componentDict.ContainsKey(type))
         {
-            componentDict[type].Destroy();
+            IComponent component = componentDict[type];
             componentDict.Remove(type);
+            component.Destroy();
         }
     }
 

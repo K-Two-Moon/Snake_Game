@@ -52,8 +52,6 @@ public class SnakeData : IData
 
         direcction = Quaternion.identity;
 
-        lv = bodyLength * 10 - 9;
-
     }
 
     public void SetDirection(Vector2 v2)
@@ -68,7 +66,7 @@ public class SnakeData : IData
         
         bodyLength = (uint)level;
         moveSpeed=speed;
-        lv = bodyLength * 10 - 9;
+
     }
 }
 

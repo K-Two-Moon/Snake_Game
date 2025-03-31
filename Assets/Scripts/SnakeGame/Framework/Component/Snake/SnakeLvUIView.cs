@@ -36,7 +36,11 @@ public class SnakeLvUIView : IComponent
     public override void Update()
     {
         base.Update();
-        t_Lv.transform.position = Camera.WorldToScreenPoint(snake.head.position);
-        t_level.text = "Lv"+snake.data.lv;
+        if (t_Lv != null)
+        {
+            t_Lv.transform.position = Camera.WorldToScreenPoint(snake.head.position);
+            t_level.text = "Lv" + snake.data.lv;
+        }
+
     }
 }

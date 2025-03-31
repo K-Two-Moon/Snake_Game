@@ -6,7 +6,7 @@ public class FoodData : IData
 {
     public Material material;
 
-    public FoodData(Material material, Vector3 vector3)
+    public FoodData(Material material)
     {
         this.material = material;
     }
