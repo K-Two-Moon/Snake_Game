@@ -27,9 +27,9 @@ public enum ComponentType
     /// <summary>
     /// UI的C层组件
     /// </summary>
-    MainPanelController
-    //UI的C层组件
     MainPanelController,
+    //UI的C层组件
+
 
     SnakeLvUIView
 

@@ -42,6 +42,8 @@ public class GameSceneObjectModule : IModule
     public void Update(float deltaTime)
     {
         CheckCollisions();
+
+        //主角为空跳场景
     }
 
     /// <summary>

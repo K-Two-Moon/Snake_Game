@@ -12,6 +12,7 @@ public class SnakeLvUIView : IComponent
 
     public Text t_level;
 
+    public Snake maxSnake;
 
     public SnakeLvUIView(ComponentType type, IGameObject obj) : base(type, obj)
     {
@@ -32,11 +33,28 @@ public class SnakeLvUIView : IComponent
         GameObject.Destroy(t_Lv);
         base.Destroy();
     }
+    /// <summary>
+    /// 创建皇冠
+    /// </summary>
+    /// <returns></returns>
+    public GameObject AddKing()
+    {
+        GameObject go =  GameObject.Instantiate(snake.data.config.snakeLvConfig.kingObj);
+        return go;
+    }
 
     public override void Update()
     {
         base.Update();
-        t_Lv.transform.position = Camera.WorldToScreenPoint(snake.head.position);
-        t_level.text = "Lv"+snake.data.lv;
+        if (t_Lv != null)
+        {
+            t_Lv.transform.position = Camera.WorldToScreenPoint(snake.head.position);
+            t_level.text = "Lv" + snake.data.lv;
+        }
+        maxSnake = World.Instance.maxSnake;
+        // if(maxSnake.Id != snake.Id)
+        // {
+        //     GameObject.Destroy(World.Instance.king);
+        // }
     }
 }

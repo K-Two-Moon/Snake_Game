@@ -28,6 +28,13 @@ public abstract class Snake : Object3D
     public override void InitializeData(IData data)
     {
         this.data = data as SnakeData;
+        World.Instance.AddSnakeList(this);
+    }
+
+    public override void Destroy()
+    {
+        base.Destroy();
+        World.Instance.RemoveSnakeList(this);
     }
 
     public override void Create()
@@ -65,6 +72,7 @@ public abstract class Snake : Object3D
             child.position = Vector3.back * data.followDistance;
         }
 
+        
 
         base.Create();
     }

@@ -42,7 +42,7 @@ public class SnakeData : IData
         lv = 1;
 
         //初始化蛇的身体长度为2
-        bodyLength = 20;
+        bodyLength = (uint)Random.Range(4,12);
 
         followDistance = 2f;
 
@@ -51,8 +51,6 @@ public class SnakeData : IData
         rotationSpeed = 360f;
 
         direcction = Quaternion.identity;
-
-        lv = bodyLength * 10 - 9;
 
     }
 
@@ -68,7 +66,7 @@ public class SnakeData : IData
         
         bodyLength = (uint)level;
         moveSpeed=speed;
-        lv = bodyLength * 10 - 9;
+
     }
 }
 
