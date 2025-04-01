@@ -13,6 +13,9 @@ public class World : Singleton<World>
     /// </summary>
     Queue<uint> destroyQueue;
 
+    /// <summary>
+    /// 蛇的集合，用来排序，皇冠位置
+    /// </summary>
     List<Snake> snakeList = new List<Snake>();
 
     public Snake maxSnake;//等级最高的蛇
@@ -30,12 +33,6 @@ public class World : Singleton<World>
         allObjectDict.Add(nextId, obj);
         obj.SetId(nextId);
         nextId++;
-
-
-        if (obj is Snake)
-        {
-            snakeList.Add(obj as Snake);
-        }
     }
 
     void RemoveObject(uint id)
@@ -84,6 +81,9 @@ public class World : Singleton<World>
     }
 
     public GameObject king;
+
+
+
     public void Update()
     {
         float dayTime = Time.deltaTime;
@@ -133,5 +133,10 @@ public class World : Singleton<World>
         return snakeList[0];
     }
 
+    #endregion
+
+
+    #region 食物遍历蛇头专用
+    public List<Snake> SnakeList => snakeList;
     #endregion
 }

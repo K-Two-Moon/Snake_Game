@@ -15,7 +15,7 @@ public class GameSceneObjectModule : IModule
     private Queue<Snake> removeQueue = new Queue<Snake>();
 
     // 碰撞判定的距离阈值，根据实际情况调整
-    public float collisionThreshold = 0.5f;
+    public float collisionThreshold = 1f;
     public void Initialize()
     {
         // 这里是我的测试代码======================

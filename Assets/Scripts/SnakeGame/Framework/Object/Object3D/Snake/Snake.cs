@@ -31,6 +31,9 @@ public abstract class Snake : Object3D
         World.Instance.AddSnakeList(this);
     }
 
+    /// <summary>
+    /// 必须调用
+    /// </summary>
     public override void Destroy()
     {
         base.Destroy();

@@ -20,13 +20,10 @@ public class Food : Object3D
     public override void InitializeData(IData data)
     {
         this.data = data as FoodData;
-
-
     }
 
     public override void Destroy()
     {
-
         base.Destroy();
     }
 
@@ -37,5 +34,11 @@ public class Food : Object3D
         obj.transform.localScale = Vector3.one;
         obj.GetComponent<Renderer>().material = data.material;
         base.Create();
+    }
+
+    protected override void OnCreate()
+    {
+        AddComponent(ComponentType.FoodEatComponent);
+        base.OnCreate();
     }
 }
