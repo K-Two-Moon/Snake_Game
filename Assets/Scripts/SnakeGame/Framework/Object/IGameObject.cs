@@ -46,7 +46,7 @@ public abstract class IGameObject
             component.Destroy();
         }
         //在World中移除对象
-        // World.Instance.DestroyObjectToBuffer(id);
+        World.Instance.AddToDestoryObjectBuffer(id);
 
         componentDict.Clear();
         GameObject.Destroy(obj);

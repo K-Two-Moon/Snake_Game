@@ -90,12 +90,15 @@ public class GameSceneObjectModule : IModule
                         //先判等级
                         if (snake.data.lv <= otherSnake.data.lv)
                         {
-                            //蛇头比对方等级低，       ====================后续补全逻辑，蛇头不移动
+                            //蛇头比对方身体等级低
+                            snake.head.position += -snake.head.forward;
+                            gameState.CommandModule.AddCommand(new HeadColliderBody(snake));
                         }
                         else
                         {
+                            Debug.Log(bodySegment + "被吃掉了");
                             //蛇头比对方等级高，从被撞处截断
-
+                            gameState.CommandModule.AddCommand(new IntoFoodCommand(otherSnake, bodySegment.name));
                         }
                     }
                 }

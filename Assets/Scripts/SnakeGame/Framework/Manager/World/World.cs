@@ -28,12 +28,6 @@ public class World : Singleton<World>
         allObjectDict.Add(nextId, obj);
         obj.SetId(nextId);
         nextId++;
-
-
-        if(obj is Snake)
-        {
-            snakeList.Add(obj as Snake);
-        }
     }
 
     void RemoveObject(uint id)
@@ -100,4 +94,9 @@ public class World : Singleton<World>
             }
         }
     }
+
+
+    #region 食物专用成员
+
+    #endregion
 }

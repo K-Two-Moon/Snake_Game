@@ -22,7 +22,14 @@ public class GameSceneCommandModule : IModule
         while (commandQueue.Count > 0)
         {
             ICommand command = commandQueue.Dequeue();
-            command.Execute(deltaTime);
+            command.Execute();
         }
+    }
+    /// <summary>
+    /// 添加命令到队列中
+    /// </summary>
+    public void AddCommand(ICommand command)
+    {
+        commandQueue.Enqueue(command);
     }
 }
