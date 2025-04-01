@@ -21,7 +21,7 @@ public class Food : Object3D
     {
         this.data = data as FoodData;
 
-        
+
     }
 
     public override void Destroy()
@@ -34,7 +34,7 @@ public class Food : Object3D
     {
         //创建食物
         obj = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-        obj.transform.localScale = Vector3.one * 0.5f;
+        obj.transform.localScale = Vector3.one;
         obj.GetComponent<Renderer>().material = data.material;
         base.Create();
     }
