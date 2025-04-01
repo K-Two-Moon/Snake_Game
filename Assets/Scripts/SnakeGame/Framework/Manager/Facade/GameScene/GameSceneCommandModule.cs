@@ -21,6 +21,7 @@ public class GameSceneCommandModule : IModule
     {
         while (commandQueue.Count > 0)
         {
+           
             ICommand command = commandQueue.Dequeue();
             command.Execute();
         }
