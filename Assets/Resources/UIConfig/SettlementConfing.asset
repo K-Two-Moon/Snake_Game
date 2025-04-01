@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3bf583e96af8aa41a8e21aba58c9978, type: 3}
+  m_Name: SettlementConfing
+  m_EditorClassIdentifier: 
+  tlementPanel: {fileID: 8209611444408512650, guid: f987c2d45a1eb9c4889390a8019f57da, type: 3}

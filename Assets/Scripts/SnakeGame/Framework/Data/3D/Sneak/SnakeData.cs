@@ -42,7 +42,7 @@ public class SnakeData : IData
         lv = 1;
 
         //初始化蛇的身体长度为2
-        bodyLength = 20;
+        bodyLength = (uint)Random.Range(4,12);
 
         followDistance = 2f;
 

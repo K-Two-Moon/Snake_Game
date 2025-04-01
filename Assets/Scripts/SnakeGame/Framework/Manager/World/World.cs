@@ -15,6 +15,7 @@ public class World : Singleton<World>
 
     List<Snake> snakeList = new List<Snake>();
 
+    public Snake maxSnake;//等级最高的蛇
     static uint nextId = 0;
 
     public void Initialize()
@@ -23,11 +24,18 @@ public class World : Singleton<World>
         destroyQueue = new Queue<uint>();
     }
 
+
     public void AddObject(IGameObject obj)
     {
         allObjectDict.Add(nextId, obj);
         obj.SetId(nextId);
         nextId++;
+
+
+        if (obj is Snake)
+        {
+            snakeList.Add(obj as Snake);
+        }
     }
 
     void RemoveObject(uint id)
@@ -75,7 +83,7 @@ public class World : Singleton<World>
         destroyQueue.Enqueue(id);
     }
 
-
+    public GameObject king;
     public void Update()
     {
         float dayTime = Time.deltaTime;
@@ -93,10 +101,37 @@ public class World : Singleton<World>
                 RemoveObject(id);
             }
         }
+
+
+        maxSnake = SortList();
+        SnakeLvUIView snakeLvUIView = maxSnake.GetComponent(ComponentType.SnakeLvUIView) as SnakeLvUIView;
+        if (snakeLvUIView != null)
+        {
+            if (king == null)
+            {
+                king = snakeLvUIView.AddKing();
+            }
+            king.transform.position = maxSnake.head.transform.position + Vector3.up * 2;
+        }
+
     }
 
+    #region 蛇的集合，用来排序，皇冠位置
+    public void AddSnakeList(Snake snake)
+    {
+        snakeList.Add(snake);
+    }
 
-    #region 食物专用成员
+    public void RemoveSnakeList(Snake snake)
+    {
+        snakeList.Remove(snake);
+    }
+
+    public Snake SortList()
+    {
+        snakeList.Sort((a, b) => (int)(b.data.lv - a.data.lv));
+        return snakeList[0];
+    }
 
     #endregion
 }

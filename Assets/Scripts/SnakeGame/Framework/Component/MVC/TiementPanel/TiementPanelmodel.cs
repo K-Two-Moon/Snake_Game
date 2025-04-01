@@ -2,17 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TiementPanelmodel : MonoBehaviour
+public class TiementPanelmodel
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private TiementPanel obj;
 
-    // Update is called once per frame
-    void Update()
+    public TiementPanelData data;
+
+    public TiementPanelmodel(IGameObject obj)
     {
-        
+        this.obj = obj as TiementPanel;
+        data = this.obj.data;
+    }
+    
+    /// <summary>
+    /// 这里获取数据
+    /// </summary>
+    internal void Initialize()
+    {
+
     }
 }

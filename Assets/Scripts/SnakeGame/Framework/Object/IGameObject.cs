@@ -104,7 +104,11 @@ public abstract class IGameObject
         {
             return componentDict[type];
         }
-        return null;
+        else
+        {
+            //Debug.LogError("报空了");
+            return null;
+        }
     }
 }
 

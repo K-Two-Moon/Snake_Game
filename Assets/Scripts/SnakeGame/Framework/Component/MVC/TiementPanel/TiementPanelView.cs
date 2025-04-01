@@ -1,18 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class TiementPanelView : MonoBehaviour
+public class TiementPanelView 
 {
-    // Start is called before the first frame update
-    void Start()
+    public TiementPanel tiementPanel;
+
+    public Text t_money;
+
+    public Text t_addMoney;
+
+    public TiementPanelView(IGameObject obj)
     {
-        
+        tiementPanel = obj as TiementPanel;
     }
 
-    // Update is called once per frame
-    void Update()
+    /// <summary>
+    /// 初始化
+    /// </summary>
+    public void Initialize()
     {
-        
+        t_money = GameObject.Find("SettlementPanel(Clone)/gold/t_gold").GetComponent<Text>();
+
+        t_addMoney = GameObject.Find("SettlementPanel(Clone)/bg_rew/t_addGold").GetComponent<Text>();
     }
 }
