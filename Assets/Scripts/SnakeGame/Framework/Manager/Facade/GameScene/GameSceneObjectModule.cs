@@ -95,7 +95,7 @@ public class GameSceneObjectModule : IModule
                         else
                         {
                             //蛇头比对方等级高，从被撞处截断
-
+                            gameState.CommandModule.AddCommand(new IntoFoodComponent(snake, otherSnake.Obj.name));
                         }
                     }
                 }

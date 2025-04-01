@@ -3,25 +3,22 @@ using UnityEngine;
 
 public interface ICommand
 {
-    void Execute(params object[] args);
+    void Execute(float deltaTime);
 }
 
 public class IntoFoodComponent : ICommand
 {
     Snake snake;
-    public IntoFoodComponent(IGameObject obj)
+    string bodyName;
+    public IntoFoodComponent(IGameObject obj, string bodyName)
     {
         snake = obj as Snake;
+        this.bodyName = bodyName;
     }
 
-    /// <summary>
-    /// 执行命令
-    /// </summary>
-    /// <param name="args">传入一个参数，参数类型为string，表示身体的名称</param>
-    public void Execute(params object[] args)
-    {
-        string bodyName = args[0] as string;
 
+    public void Execute(float deltaTime)
+    {
         //查找身体的索引
         int index = snake.list.FindIndex(x => x.name.Equals(bodyName));
 
