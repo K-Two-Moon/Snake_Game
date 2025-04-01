@@ -34,7 +34,7 @@ public class SnakeLvUIView : IComponent
         base.Destroy();
     }
     /// <summary>
-    /// 创建皇冠
+    /// �����ʹ�
     /// </summary>
     /// <returns></returns>
     public GameObject AddKing()
