@@ -23,7 +23,7 @@ public class GameSceneCommandModule : IModule
         {
            
             ICommand command = commandQueue.Dequeue();
-            command.Execute(deltaTime);
+            command.Execute();
         }
     }
     /// <summary>

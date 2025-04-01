@@ -13,10 +13,10 @@ public abstract class Snake : Object3D
     public Snake()
     {
         //创建父节点
-        if (parent3D != null)
+        if (parent != null)
         {
             obj = new GameObject("蛇");
-            obj.transform.SetParent(parent3D);
+            obj.transform.SetParent(parent);
             obj.transform.position = Vector3.zero;
         }
         else
