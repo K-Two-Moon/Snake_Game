@@ -10,6 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a3bf583e96af8aa41a8e21aba58c9978, type: 3}
-  m_Name: SettlementConfing
+  m_Name: GameOverConfing
   m_EditorClassIdentifier: 
-  tlementPanel: {fileID: 8209611444408512650, guid: f987c2d45a1eb9c4889390a8019f57da, type: 3}
+  gameOverPanel: {fileID: 8209611444408512650, guid: f987c2d45a1eb9c4889390a8019f57da, type: 3}
+  panel_pos: {x: 720, y: 1544}

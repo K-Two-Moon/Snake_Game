@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SnakeGame/Menu.unity
     guid: bee990d3b193e6a49b60463d0a3eed8b
   m_configObjects: {}

@@ -22,6 +22,10 @@ public class ConfigManager : Singleton<ConfigManager>
         MainPanelConfing mainPanelConfing = Resources.Load<MainPanelConfing>("UIConfig/MainConfig");
         dict.Add(typeof(MainPanelConfing).Name, mainPanelConfing);
 
+        //加载结算面板配置文件
+        GameOverConfing gameOverConfing = Resources.Load<GameOverConfing>("UIConfig/GameOverConfing");
+        dict.Add(typeof(GameOverConfing).Name,gameOverConfing);
+
         // 加载头顶等级
         SneakLvUIViewConfig sneakLvUIViewConfig = Resources.Load<SneakLvUIViewConfig>("UIConfig/SneakLvUIViewConfig");
         dict.Add(typeof(SneakLvUIViewConfig).Name, sneakLvUIViewConfig);

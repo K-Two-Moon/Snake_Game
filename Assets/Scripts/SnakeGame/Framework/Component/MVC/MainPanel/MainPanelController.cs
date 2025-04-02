@@ -14,50 +14,56 @@ public class MainPanelController : IComponent
 
     public override void Initialize()
     {
-        //???????????
+        //添加网络事件
         BindNetEvent();
-        //????UI???
+        //添加UI事件
         BindUIEvent();
-        //????γ????
+        //第一次初始化
         UpdateItem();
-        
+
     }
 
     public void BindUIEvent()
     {
         view.ShowMainMoney(model.data.money);
         view.ShowMainDiamond(model.data.diamond);
-        //view.btn_start.onClick.AddListener(() => 
-        //{
-        //    //??????
-        //    Debug.Log("??????");
-        //});
     }
 
     public void BindNetEvent()
     {
         MessageManager.AddListener(CMD.Child, (string num) =>
         {
-            int inpex = int.Parse(num)-1;
+            int inpex = int.Parse(num) - 1;
             model.AddLevel(inpex);
         });
-        MessageManager.AddListener(CMD.ShowLevel,()=>
+        MessageManager.AddListener(CMD.ShowLevel, () =>
         {
             UpdateItem();
             view.ShowMainMoney(model.data.money);
         });
-        MessageManager.AddListener(CMD.ShowDiamond,()=>
+        MessageManager.AddListener(CMD.ShowDiamond, () =>
         {
             view.ShowMainDiamond(model.data.diamond);
         });
-        MessageManager.AddListener(CMD.ShowMonwy,()=>
+        MessageManager.AddListener(CMD.ShowMonwy, () =>
         {
             model.ShowMoney();
             view.ShowMainMoney(model.data.money);
         });
-        MessageManager.AddListener(CMD.UpdataPlayerLevel,()=>{
+        MessageManager.AddListener(CMD.UpdataPlayerLevel, () =>
+        {
             //调用更新的事件
         });
+        MessageManager.AddListener(CMD.UpdataMoney, AddEndMoney);
+    }
+
+    public void AddEndMoney()
+    {
+        //调用更新金币
+        model.data.money += PlayerSneakDataSingleton.Instance.playerData.initStartlevel * 133;
+        //持久化金币
+        PlayerSneakDataSingleton.Instance.SetMoneyData(model.data.money);
+        view.ShowMainMoney(model.data.money);
     }
 
     public override void Update()
@@ -70,7 +76,13 @@ public class MainPanelController : IComponent
     {
         for (int i = 0; i < model.items.Count; i++)
         {
-            view.items[i].GetComponent<MainPanelItem>().Init(model.items[i],model.data.money);
+            view.items[i].GetComponent<MainPanelItem>().Init(model.items[i], model.data.money);
         }
+    }
+
+    public override void Destroy()
+    {
+        base.Destroy();
+        MessageManager.RemoveListener(CMD.UpdataMoney, AddEndMoney);
     }
 }

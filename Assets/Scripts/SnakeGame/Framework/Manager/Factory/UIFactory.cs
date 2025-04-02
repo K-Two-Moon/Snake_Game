@@ -6,7 +6,10 @@ public enum UIType
     /// 主面板
     /// </summary>
     MainPanel,
-
+    /// <summary>
+    /// 结算面板
+    /// </summary>
+    GameOverPanel
 }
 
 
@@ -30,7 +33,7 @@ public static class UIFactory
     private static ObjectUI SwitchBuilder(UIType type) => type switch
     {
         UIType.MainPanel => new MainPanel(),
-     
+        UIType.GameOverPanel => new GameOverPanel(),
         _ => null,
     };
 }

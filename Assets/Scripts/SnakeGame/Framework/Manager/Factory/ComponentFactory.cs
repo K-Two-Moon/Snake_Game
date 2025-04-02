@@ -31,8 +31,9 @@ public enum ComponentType
     //UI的C层组件
 
 
-    SnakeLvUIView
-
+    SnakeLvUIView,
+    GameOverController,
+    GameController,
 
 }
 
@@ -74,6 +75,8 @@ public static class ComponentFactory
         ComponentType.MainPanelController => new MainPanelController(type, obj),
 
         ComponentType.SnakeLvUIView => new SnakeLvUIView(type, obj),
+
+        ComponentType.GameOverController => new GameOverPanelController(type, obj),
         _ => null
     };
 }

@@ -16,11 +16,15 @@ public class GameSceneObjectModule : IModule
 
     // 碰撞判定的距离阈值，根据实际情况调整
     public float collisionThreshold = 0.5f;
+
+    Snake player;
+
+
     public void Initialize()
     {
         // 这里是我的测试代码======================
 
-        Snake player = Object3DFactory.CreateProduct(Object3DType.SnakePlayer) as Snake;
+        player = Object3DFactory.CreateProduct(Object3DType.SnakePlayer) as Snake;
         SnakeData snakeData = new SnakeData(ConfigManager.Instance.GetSnakeConfig(1) as SnakeConfig);
         player.InitializeData(snakeData);
         player.Create();
@@ -44,6 +48,14 @@ public class GameSceneObjectModule : IModule
         CheckCollisions();
 
         //主角为空跳场景
+        if (player.Obj ==null)
+        {
+            if(GameObject.Find("Crown(Clone)")!=null)
+            {   
+                GameObject.Destroy(GameObject.Find("Crown(Clone)"));
+            }
+            gameState.controller.ChangeState(SceneStateEnum.GameOver);
+        }
     }
 
     /// <summary>

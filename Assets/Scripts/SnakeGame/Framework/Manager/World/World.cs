@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class World : Singleton<World>
+public partial class World : Singleton<World>
 {
     /// <summary>
     /// All objects in the world.
@@ -13,9 +13,7 @@ public class World : Singleton<World>
     /// </summary>
     Queue<uint> destroyQueue;
 
-    List<Snake> snakeList = new List<Snake>();
-
-    public Snake maxSnake;//等级最高的蛇
+    
     static uint nextId = 0;
 
     public void Initialize()
@@ -24,18 +22,13 @@ public class World : Singleton<World>
         destroyQueue = new Queue<uint>();
     }
 
-
     public void AddObject(IGameObject obj)
     {
         allObjectDict.Add(nextId, obj);
         obj.SetId(nextId);
         nextId++;
 
-
-        if (obj is Snake)
-        {
-            snakeList.Add(obj as Snake);
-        }
+        SnakeAddObject(obj);
     }
 
     void RemoveObject(uint id)
@@ -86,6 +79,7 @@ public class World : Singleton<World>
     public GameObject king;
     public void Update()
     {
+        SnakeUpdate();
         float dayTime = Time.deltaTime;
         foreach (IGameObject item in allObjectDict.Values)
         {
@@ -101,21 +95,14 @@ public class World : Singleton<World>
                 RemoveObject(id);
             }
         }
-
-
-        maxSnake = SortList();
-        SnakeLvUIView snakeLvUIView = maxSnake.GetComponent(ComponentType.SnakeLvUIView) as SnakeLvUIView;
-        if (snakeLvUIView != null)
-        {
-            if (king == null)
-            {
-                king = snakeLvUIView.AddKing();
-            }
-            king.transform.position = maxSnake.head.transform.position + Vector3.up * 2;
-        }
-
     }
+}
 
+public partial class World : Singleton<World>
+{
+    List<Snake> snakeList = new List<Snake>();
+
+    public Snake maxSnake;//等级最高的蛇 
     #region 蛇的集合，用来排序，皇冠位置
     public void AddSnakeList(Snake snake)
     {
@@ -133,5 +120,31 @@ public class World : Singleton<World>
         return snakeList[0];
     }
 
-    #endregion
+    #endregion   
+
+    public void SnakeAddObject(IGameObject obj)
+    {
+        allObjectDict.Add(nextId, obj);
+        obj.SetId(nextId);
+        nextId++;
+        
+        if (obj is Snake)
+        {
+            snakeList.Add(obj as Snake);
+        }
+    }
+
+    public void   SnakeUpdate()
+    {
+        maxSnake = SortList();
+        SnakeLvUIView snakeLvUIView = maxSnake.GetComponent(ComponentType.SnakeLvUIView) as SnakeLvUIView;
+        if (snakeLvUIView != null)
+        {
+            if (king == null)
+            {
+                king = snakeLvUIView.AddKing();
+            }
+            king.transform.position = maxSnake.head.transform.position + Vector3.up * 2;
+        }
+    }
 }

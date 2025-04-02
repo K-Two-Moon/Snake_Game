@@ -11,7 +11,7 @@ public class MainPanelData : IData
     /// <summary>
     /// 变的
     /// </summary>
-    public int money = 1;//金币
+    public int money;//金币
     public int diamond;//钻石
 
     public MainPanelData(MainPanelConfing confing)

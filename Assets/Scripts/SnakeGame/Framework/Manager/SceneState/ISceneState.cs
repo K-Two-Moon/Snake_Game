@@ -12,7 +12,7 @@ public interface ISceneState
 public abstract class SceneState : ISceneState
 {
     // 保护的场景状态控制器实例
-    protected SceneStateController controller;
+    public SceneStateController controller;
 
     // 保护的场景名称字符串
     protected string sceneName;

@@ -18,6 +18,8 @@ public class CMD
     public const string AddSpeed = "添加速度";
 
     public const string UpdataPlayerLevel = "更新玩家的初始等级";
+
+    public const string UpdataMoney = "刷新主界面金币";
     #endregion
     #endregion
 }

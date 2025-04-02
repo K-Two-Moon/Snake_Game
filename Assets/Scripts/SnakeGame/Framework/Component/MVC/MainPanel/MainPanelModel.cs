@@ -54,7 +54,7 @@ public class MainPanelModel
     {
         data.money += num;
         //发消息到c
-
+        PlayerSneakDataSingleton.Instance.SetMoneyData(data.money);
     }
 
     public int ShowMoney()
