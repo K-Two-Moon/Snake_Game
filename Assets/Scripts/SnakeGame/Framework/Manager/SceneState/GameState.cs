@@ -3,7 +3,7 @@ using UnityEngine;
 public class GameState : SceneState
 {
     public GameSystemFacade facade;
-
+    GameSceneEventModule eventModule;
     GameSceneObjectModule objectModule;
     GameSceneCommandModule commandModule;
     public GameSceneObjectModule ObjectModule => objectModule;
@@ -20,9 +20,12 @@ public class GameState : SceneState
         base.Enter();
 
         facade = new GameSystemFacade();
+
+        eventModule = new GameSceneEventModule(this);
         objectModule = new GameSceneObjectModule(this);
         commandModule = new GameSceneCommandModule(this);
 
+        facade.AddModule(eventModule);
         facade.AddModule(objectModule);
         facade.AddModule(commandModule);
 

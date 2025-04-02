@@ -47,7 +47,7 @@ public sealed class VirtualCameraComponent : IComponent
             cinemachineTransposer = vlam.AddCinemachineComponent<CinemachineTransposer>();
         }
         cinemachineTransposer.m_BindingMode = CinemachineTransposer.BindingMode.WorldSpace;
-        cinemachineTransposer.m_FollowOffset = new Vector3(0, 30, 0);
+        cinemachineTransposer.m_FollowOffset = new Vector3(0, 50, 0);
 
         //添加并配置 Composer（Aim）组件
         CinemachineComposer composer = vlam.AddCinemachineComponent<CinemachineComposer>();

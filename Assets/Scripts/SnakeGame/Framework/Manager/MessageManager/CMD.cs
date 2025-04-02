@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CMD 
+public class CMD
 {
     #region UI
     #region MainPanel
@@ -19,5 +19,9 @@ public class CMD
 
     public const string UpdataPlayerLevel = "更新玩家的初始等级";
     #endregion
+    #endregion
+
+    #region  GameSceneEventModule
+    public const string AddToCommandQueue = "添加命令到队列";
     #endregion
 }

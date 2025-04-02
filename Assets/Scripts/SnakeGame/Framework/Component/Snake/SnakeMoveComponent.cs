@@ -25,6 +25,8 @@ public class SnakeMoveComponent : IComponent
 
     private void HeadMove(float deltaTime)
     {
+        if (snake == null || snake.head == null) return;
+
         Transform head = snake.head;
 
         //蛇头方向

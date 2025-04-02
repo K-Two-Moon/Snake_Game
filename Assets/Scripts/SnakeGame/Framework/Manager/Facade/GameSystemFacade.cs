@@ -26,6 +26,4 @@ public class GameSystemFacade
             moduled.Update(deltaTime);
         }
     }
-
-   
 }

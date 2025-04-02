@@ -24,6 +24,7 @@ public class Food : Object3D
 
     public override void Destroy()
     {
+        World.Instance.RemoveFood(this);
         base.Destroy();
     }
 
@@ -35,6 +36,7 @@ public class Food : Object3D
         obj.GetComponent<Renderer>().material = data.material;
         obj.transform.SetParent(parent);
         base.Create();
+        World.Instance.AddFood(this);
     }
 
     protected override void OnCreate()

@@ -54,7 +54,7 @@ public class FoodEatComponent : IComponent
             return;
         }
 
-        Debug.Log("吃到食物了");
+        // Debug.Log("吃到食物了");
         float time = 0;
         var token = food.Obj.GetCancellationTokenOnDestroy();
 
@@ -65,15 +65,16 @@ public class FoodEatComponent : IComponent
         {
             time += Time.deltaTime * 10f;
             food.Obj.transform.position = Vector3.Lerp(startPosition, endPosition, time);
-            await UniTask.Yield(PlayerLoopTiming.Update, token).SuppressCancellationThrow();
+            await UniTask.Yield(token).SuppressCancellationThrow();
         }
 
         if (snake != null && !token.IsCancellationRequested)
         {
             snake.InsertBodyPart();
-            World.Instance.AddToDestoryObjectBuffer(food.Id);
         }
-
+        World.Instance.AddToDestoryObjectBuffer(food.Id);
+        //发送蛇涌动命令
+        MessageManager.Broadcast<ICommand>(CMD.AddToCommandQueue, new SnakeSurgeCommand(snake));
     }
 
 }

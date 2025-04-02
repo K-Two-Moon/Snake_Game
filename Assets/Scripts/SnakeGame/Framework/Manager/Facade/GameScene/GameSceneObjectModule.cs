@@ -42,9 +42,12 @@ public class GameSceneObjectModule : IModule
 
 
         CreatorEnemySnakeAsync();
+        CreatorFoodAsync();
     }
 
-    // 异步创建敌人蛇的方法
+    /// <summary>
+    /// 异步创建敌人蛇的方法
+    /// </summary>
     async void CreatorEnemySnakeAsync()
     {
         // 循环创建7条初始的敌人蛇
@@ -60,7 +63,7 @@ public class GameSceneObjectModule : IModule
             // 将敌人蛇添加到蛇列表中
             //snakeList.Add(enemy);
             // 设置敌人蛇的随机位置
-            Vector2 v2 = Random.insideUnitCircle * 10;
+            Vector2 v2 = Random.insideUnitCircle * 30;
             enemy.Obj.transform.position = new Vector3(v2.x, 0, v2.y);
         }
 
@@ -84,7 +87,7 @@ public class GameSceneObjectModule : IModule
             // 随机选择一个蛇配置ID
             int r = Random.Range(1, 8); // 1-7
             // 获取对应的蛇配置
-            SnakeConfig snakeConfig = ConfigManager.Instance.GetSnakeConfig((uint)r) as SnakeConfig;
+            SnakeConfig snakeConfig = ConfigManager.Instance.GetSnakeConfig((uint)r);
             // 如果蛇配置为空，输出警告信息并返回
             if (snakeConfig == null)
             {
@@ -110,9 +113,57 @@ public class GameSceneObjectModule : IModule
             snakeList.Add(enemy);
 
             // 设置敌人蛇的随机位置
-            Vector2 v2 = Random.insideUnitCircle * 30;
-            enemy.Obj.transform.position = new Vector3(v2.x, 0, v2.y);
+            Vector2 v2 = Random.insideUnitCircle * 50;
+            enemy.head.transform.position = new Vector3(v2.x, 0, v2.y);
         }
+    }
+
+
+    // 食物容器
+    private Dictionary<uint, Food> foodDict = World.Instance.FoodDict;
+    // 合理的食物数量
+    private const int MIN_FOOD_COUNT = 200;
+
+    /// <summary>
+    /// 异步创建食物的方法
+    /// </summary>
+    async void CreatorFoodAsync()
+    {
+        // 获取游戏循环的取消令牌
+        var token = GameLoop.Instance.GetCancellationTokenOnDestroy();
+
+        while (!token.IsCancellationRequested)
+        {
+            await UniTask.WaitUntil(() => foodDict.Count < MIN_FOOD_COUNT).AttachExternalCancellation(token).SuppressCancellationThrow();
+
+            if (token.IsCancellationRequested)
+            {
+                Debug.Log("GameLoop 被销毁，停止生成食物");
+                break;
+            }
+
+            Food food = Object3DFactory.CreateProduct(Object3DType.Food) as Food;
+            // 随机选择一个材质配置ID
+            int r = Random.Range(0, snakeList.Count);
+            //从蛇身上获取材质
+            Material mat = snakeList[r].head.GetComponent<MeshRenderer>().material;
+            FoodData foodData = new FoodData(mat);
+            food.InitializeData(foodData);
+            // 在场景中创建食物
+            food.Create();
+            // 设置食物缩放
+            food.Obj.transform.localScale = Vector3.one * 0.5f;
+            // 设置随机位置(原点正负45的矩形区域)
+            food.Obj.transform.position = new Vector3(
+                Random.Range(-45f, 45f),
+                0,
+                Random.Range(-45f, 45f)
+            );
+        }
+        // 设置食物的随机位置
+
+
+
     }
 
     public void Update(float deltaTime)
@@ -206,9 +257,15 @@ public class GameSceneObjectModule : IModule
     /// </summary>
     void DestroySnake(Snake snake)
     {
-        //在世界管理类中删除
-        World.Instance.AddToDestoryObjectBuffer(snake.Id);
         //加入销毁缓存队列
         removeQueue.Enqueue(snake);
+        //在世界管理类中删除
+        World.Instance.AddToDestoryObjectBuffer(snake.Id);
     }
+
+    public void Destroy()
+    {
+        // 销毁所有蛇
+    }
+
 }

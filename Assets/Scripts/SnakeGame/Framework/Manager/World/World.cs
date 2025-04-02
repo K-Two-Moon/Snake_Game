@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class World : Singleton<World>
+public partial class World : Singleton<World>
 {
     /// <summary>
     /// All objects in the world.
@@ -92,15 +92,7 @@ public class World : Singleton<World>
             item.Update(dayTime);
         }
 
-        //销毁缓存中的对象
-        if (destroyQueue.Count > 0)
-        {
-            while (destroyQueue.Count > 0)
-            {
-                uint id = destroyQueue.Dequeue();
-                RemoveObject(id);
-            }
-        }
+
 
 
         maxSnake = SortList();
@@ -112,6 +104,16 @@ public class World : Singleton<World>
                 king = snakeLvUIView.AddKing();
             }
             king.transform.position = maxSnake.head.transform.position + Vector3.up * 2;
+        }
+
+        //销毁缓存中的对象
+        if (destroyQueue.Count > 0)
+        {
+            while (destroyQueue.Count > 0)
+            {
+                uint id = destroyQueue.Dequeue();
+                RemoveObject(id);
+            }
         }
 
     }
@@ -139,4 +141,24 @@ public class World : Singleton<World>
     #region 食物遍历蛇头专用
     public List<Snake> SnakeList => snakeList;
     #endregion
+}
+
+/// <summary>
+/// 食物容器专用
+/// </summary>
+public partial class World : Singleton<World>
+{
+    Dictionary<uint, Food> foodDict = new Dictionary<uint, Food>();
+
+    public Dictionary<uint, Food> FoodDict => foodDict;
+
+    public void AddFood(Food food)
+    {
+        foodDict.Add(food.Id, food);
+    }
+
+    public void RemoveFood(Food food)
+    {
+        foodDict.Remove(food.Id);
+    }
 }
