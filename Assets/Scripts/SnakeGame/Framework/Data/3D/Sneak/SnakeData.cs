@@ -15,6 +15,10 @@ public class SnakeData : IData
     /// </summary>
     public float followDistance;
     /// <summary>
+    /// 蛇身体的缩放
+    /// </summary>
+    public float snakeScale;
+    /// <summary>
     /// 蛇的移动速度
     /// </summary>
     public float moveSpeed;
@@ -35,21 +39,33 @@ public class SnakeData : IData
 
 
 
-    public SnakeData(SnakeConfig config) //蛇只有7种颜色配置
+    public SnakeData(SnakeConfig config, uint playerBodyLength = 1) //蛇只有7种颜色配置
     {
+        //敌人蛇初始长度在玩家上下浮动
         this.config = config;
+        // 根据随机偏移量调整玩家身体长度
+        int bodyLengthOffset = Random.Range(-10, 10);
+        int count = (int)playerBodyLength - bodyLengthOffset;
+        // 确保身体长度至少为1
+        if (count < 1)
+        {
+            count = 1;
+        }
+        bodyLength = (uint)count;
 
-        lv = 1;
-
-        //初始化蛇的身体长度为2
-        bodyLength = (uint)Random.Range(4,12);
-
+        // 设置跟随距离
         followDistance = 2f;
 
+        // 设置移动速度
         moveSpeed = 5;
 
+        // 设置旋转速度
         rotationSpeed = 360f;
 
+        // 设置初始缩放
+        snakeScale = 1f;
+
+        // 初始化方向为单位四元数
         direcction = Quaternion.identity;
 
     }
@@ -63,9 +79,9 @@ public class SnakeData : IData
 
     internal void PlayerInitLevel(int level, int speed, int upgrade)
     {
-        
+
         bodyLength = (uint)level;
-        moveSpeed=speed;
+        moveSpeed = speed;
 
     }
 }

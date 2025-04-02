@@ -33,6 +33,7 @@ public class Food : Object3D
         obj = GameObject.CreatePrimitive(PrimitiveType.Sphere);
         obj.transform.localScale = Vector3.one;
         obj.GetComponent<Renderer>().material = data.material;
+        obj.transform.SetParent(parent);
         base.Create();
     }
 

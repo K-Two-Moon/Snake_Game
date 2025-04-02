@@ -9,20 +9,24 @@ public interface ICommand
 public class IntoFoodCommand : ICommand
 {
     Snake snake;
-    string bodyName;
+    int index;
     public IntoFoodCommand(IGameObject obj, string bodyName)
     {
         snake = obj as Snake;
-        this.bodyName = bodyName;
+
+        //查找身体的索引
+        index = snake.list.FindIndex(x => x.name.Equals(bodyName));
+    }
+
+    public IntoFoodCommand(IGameObject obj)
+    {
+        snake = obj as Snake;
+        index = 0;
     }
 
 
     public void Execute()
     {
-        //查找身体的索引
-        int index = snake.list.FindIndex(x => x.name.Equals(bodyName));
-
-
         if (index >= 0)
         {
             for (int i = snake.list.Count - 2; i >= index; i--)

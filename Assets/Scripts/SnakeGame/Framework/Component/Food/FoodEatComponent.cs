@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using System.Threading;
+using System;
 
 public class FoodEatComponent : IComponent
 {
@@ -34,40 +35,45 @@ public class FoodEatComponent : IComponent
             Transform head = snake.head;
             Vector3 foodPosition = food.Obj.transform.position;
 
-            try
+
+            float distance = Vector3.Distance(head.position, foodPosition);
+            if (distance < 1.5f) // 吃到食物的距离阈值
             {
-                float distance = Vector3.Distance(head.position, foodPosition);
-                if (distance < 1.5f) // 吃到食物的距离阈值
-                {
-                    MoveFoodToHeadAsync(head, food);  // 传递 CancellationToken
-                }
+                MoveFoodToHeadAsync(snake, food);  // 传递 CancellationToken
             }
-            catch
-            {
-                Debug.Log(1);
-            }
+
         }
     }
 
     // 移动食物到蛇头的异步方法
-    async private void MoveFoodToHeadAsync(Transform snakeHead, Food food)
+    async private void MoveFoodToHeadAsync(Snake snake, Food food)
     {
-        Debug.Log("吃到食物了");
-        Vector3 targetPosition = snakeHead.position;
-        float time = 0;
-
-        // 获取 CancellationToken
-        CancellationToken token = food.Obj.GetCancellationTokenOnDestroy();
-
-        while (time < 1)
+        if (snake == null || snake.head == null || food == null || food.Obj == null)
         {
-            await UniTask.Yield(token);  // 使用 CancellationToken
-            time += Time.deltaTime;
-            // if (time >= 1)
-            // {
-            //     return;
-            // }
-            food.Obj.transform.position = Vector3.MoveTowards(food.Obj.transform.position, targetPosition, time);
+            Debug.LogWarning("MoveFoodToHeadAsync: 参数不合法");
+            return;
         }
+
+        Debug.Log("吃到食物了");
+        float time = 0;
+        var token = food.Obj.GetCancellationTokenOnDestroy();
+
+        var startPosition = food.Obj.transform.position;
+        var endPosition = snake.head.position;
+
+        while (time < 1f && !token.IsCancellationRequested)
+        {
+            time += Time.deltaTime * 10f;
+            food.Obj.transform.position = Vector3.Lerp(startPosition, endPosition, time);
+            await UniTask.Yield(PlayerLoopTiming.Update, token).SuppressCancellationThrow();
+        }
+
+        if (snake != null && !token.IsCancellationRequested)
+        {
+            snake.InsertBodyPart();
+            World.Instance.AddToDestoryObjectBuffer(food.Id);
+        }
+
     }
+
 }

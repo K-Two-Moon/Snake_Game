@@ -67,15 +67,14 @@ public abstract class Snake : Object3D
         list.Add(tail);
 
 
+        head.localScale = Vector3.one * data.snakeScale;
         //蛇各个身体部位的初始位置,大小
         for (int i = 1; i < list.Count; i++)
         {
             Transform child = list[i];
-            child.localScale = Vector3.one;
-            child.position = Vector3.back * data.followDistance;
+            child.localScale = Vector3.one * data.snakeScale;
+            child.position = list[i - 1].position - (list[i - 1].forward * data.snakeScale);
         }
-
-        
 
         base.Create();
     }
@@ -140,5 +139,34 @@ public abstract class Snake : Object3D
             }
         }
         Debug.Log(data.moveSpeed);
+    }
+
+    /// <summary>
+    /// 在蛇头后面插入新的身体部位
+    /// </summary>
+    public void InsertBodyPart()
+    {
+        if (data == null || data.config == null || data.config.body == null || obj == null)
+        {
+            return;
+        }
+
+
+        // 创建新的身体部位
+        Transform newBody = Object.Instantiate(data.config.body).transform;
+        newBody.name = "body" + (data.bodyLength + 1);
+        newBody.SetParent(obj.transform);
+
+        // 将新身体插入到尾巴前面
+
+        list.Insert(list.Count - 1, newBody);
+
+        // 更新蛇的长度
+        data.bodyLength++;
+
+        // 设置新身体的位置(放在蛇尾巴的位置)
+
+        newBody.position = list[list.Count - 1].position;
+        newBody.rotation = list[list.Count - 1].rotation;
     }
 }
