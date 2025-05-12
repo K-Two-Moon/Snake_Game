@@ -26,4 +26,12 @@ public class GameSystemFacade
             moduled.Update(deltaTime);
         }
     }
+
+    internal void Destroy()
+    {
+        foreach (var moduled in moduleList)
+        {
+            moduled.Destroy();
+        }
+    }
 }

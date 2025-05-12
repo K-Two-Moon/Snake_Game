@@ -29,11 +29,14 @@ public class GameOverPanelController : IComponent
 
     private Vector3 velocity = Vector3.zero;
     public float smoothTime = 0.5f; // 到达目标的大致时间
-    private bool isMovingToEnd = true;
+    private bool isMovingToEnd = true;// 起始位置 是左边 还是右边
     public override void Update()
     {
+        // targetPos 是 目标位置
+        // view.posEnd.position是一个空对象的位置  最左边
+        // view.posStart.position是一个空对象的位置  最右边
         Vector3 targetPos = isMovingToEnd ? view.posEnd.position : view.posStart.position;
-        // 平滑移动
+        // 平滑移动  
         view.img_arrow.transform.position = Vector3.SmoothDamp(
             view.img_arrow.transform.position,
             targetPos,

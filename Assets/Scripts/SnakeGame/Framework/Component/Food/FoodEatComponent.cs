@@ -34,14 +34,14 @@ public class FoodEatComponent : IComponent
         {
             Transform head = snake.head;
             Vector3 foodPosition = food.Obj.transform.position;
-
-
-            float distance = Vector3.Distance(head.position, foodPosition);
-            if (distance < 1.5f) // 吃到食物的距离阈值
+            if(head!=null)
             {
-                MoveFoodToHeadAsync(snake, food);  // 传递 CancellationToken
+                float distance = Vector3.Distance(head.position, foodPosition);
+                if (distance < 1.5f) // 吃到食物的距离阈值
+                {
+                    MoveFoodToHeadAsync(snake, food);  // 传递 CancellationToken
+                }
             }
-
         }
     }
 

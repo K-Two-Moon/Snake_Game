@@ -64,7 +64,7 @@ public class SceneStateController
 
         if (currentState != null)
         {
-            currentState.Enter(); // 异步加载新场景
+            currentState.Enter(); 
         }
     }
 

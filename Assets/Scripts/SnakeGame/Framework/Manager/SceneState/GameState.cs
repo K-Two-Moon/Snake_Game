@@ -14,9 +14,10 @@ public class GameState : SceneState
         sceneName = SceneStateEnum.Game.ToString();
     }
 
-
+    public GameObject obj;
     public override void Enter()
     {
+        obj = new GameObject();
         base.Enter();
 
         facade = new GameSystemFacade();
@@ -34,6 +35,9 @@ public class GameState : SceneState
 
     public override void Exit()
     {
+        Debug.Log("123123123123123123");
+        GameObject.Destroy(obj);
+        facade.Destroy();
         facade = null;
         base.Exit();
     }

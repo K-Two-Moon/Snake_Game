@@ -17,17 +17,23 @@ public class GameSceneObjectModule : IModule
 
     // 碰撞判定的距离阈值，根据实际情况调整
     public float collisionThreshold = 0.5f;
+
+    Snake player;
+
     public void Initialize()
     {
         snakeList = World.Instance.SnakeList;
 
-        Snake player = Object3DFactory.CreateProduct(Object3DType.SnakePlayer) as Snake;
+        player = Object3DFactory.CreateProduct(Object3DType.SnakePlayer) as Snake;
         SnakeData snakeData = new SnakeData(ConfigManager.Instance.GetSnakeConfig(1) as SnakeConfig);
         player.InitializeData(snakeData);
         player.Create();
         //snakeList.Add(player);
 
-
+        if(PlayerSneakDataSingleton.Instance == null)
+        {
+            
+        }
         CreatorEnemySnakeAsync();
         CreatorFoodAsync();
     }
@@ -117,11 +123,14 @@ public class GameSceneObjectModule : IModule
     async void CreatorFoodAsync()
     {
         // 获取游戏循环的取消令牌
-        var token = GameLoop.Instance.GetCancellationTokenOnDestroy();
+        var token = gameState.obj.GetCancellationTokenOnDestroy();
 
         while (!token.IsCancellationRequested)
         {
+
+
             await UniTask.WaitUntil(() => foodDict.Count < MIN_FOOD_COUNT).AttachExternalCancellation(token).SuppressCancellationThrow();
+
 
             if (token.IsCancellationRequested)
             {
@@ -158,10 +167,10 @@ public class GameSceneObjectModule : IModule
         CheckCollisions();
 
         //主角为空跳场景
-        if (player.Obj ==null)
+        if (player.Obj == null)
         {
-            if(GameObject.Find("Crown(Clone)")!=null)
-            {   
+            if (GameObject.Find("Crown(Clone)") != null)
+            {
                 GameObject.Destroy(GameObject.Find("Crown(Clone)"));
             }
             gameState.controller.ChangeState(SceneStateEnum.GameOver);
@@ -196,7 +205,7 @@ public class GameSceneObjectModule : IModule
                 // 检测是否撞击对方的头部
                 if (Vector3.Distance(myHeadPos, otherSnake.head.position) < collisionThreshold)
                 {
-                    Debug.Log($"{snake.Obj.name} 的蛇头撞击了 {otherSnake.Obj.name} 的蛇头");
+                    // Debug.Log($"{snake.Obj.name} 的蛇头撞击了 {otherSnake.Obj.name} 的蛇头");
                     // 此处可加入后续处理逻辑
                     //判断谁的等级低，谁销毁，变成食物
                     Snake lvLow;
@@ -219,7 +228,7 @@ public class GameSceneObjectModule : IModule
                 {
                     if (Vector3.Distance(myHeadPos, bodySegment.position) < collisionThreshold)
                     {
-                        Debug.Log($"{snake.Obj.name} 的蛇头撞击了 {otherSnake.Obj.name} 的身体段");
+                        //Debug.Log($"{snake.Obj.name} 的蛇头撞击了 {otherSnake.Obj.name} 的身体段");
                         // 此处可加入后续处理逻辑
                         //先判等级
                         if (snake.data.lv <= otherSnake.data.lv)
@@ -261,6 +270,24 @@ public class GameSceneObjectModule : IModule
     public void Destroy()
     {
         // 销毁所有蛇
+        foreach (var item in snakeList)
+        {
+            World.Instance.AddToDestoryObjectBuffer(item.Id);
+        }
+        snakeList.Clear();
+
+        foreach (var item in World.Instance.SnakeList)
+        {
+            World.Instance.AddToDestoryObjectBuffer(item.Id);
+        }
+        World.Instance.SnakeList.Clear();
+        Debug.Log("tianqiyujjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
+        Transform par = GameObject.Find("Parent3D").transform;
+        foreach (Transform item in par)
+        {
+            uint idnex = (uint)(int.Parse(item.name));
+            World.Instance.AddToDestoryObjectBuffer(idnex);
+        }
     }
 
 }

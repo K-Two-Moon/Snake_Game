@@ -11,6 +11,11 @@ public class GameOverSceneInputModule:IModule
         this.controller = controller;
     }
 
+    public void Destroy()
+    {
+
+    }
+
     public void Initialize()
     {
 
