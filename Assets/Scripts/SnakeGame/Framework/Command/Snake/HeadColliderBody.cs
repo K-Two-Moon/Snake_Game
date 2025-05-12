@@ -25,7 +25,7 @@ public class HeadColliderBody : ICommand
         // }
 
 
-        snake.head.position = snake.head.position - snake.head.forward * 1;
+        snake.head.position = snake.head.position - snake.head.forward * 2;
         //旋转180度
         snake.data.direcction = Quaternion.Euler(0, 180, 0) * snake.data.direcction;
     }

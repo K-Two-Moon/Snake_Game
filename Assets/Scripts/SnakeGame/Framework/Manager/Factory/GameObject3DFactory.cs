@@ -19,6 +19,10 @@ public enum Object3DType
     /// </summary>
     SnakeEnemy,
     /// <summary>
+    /// 蛇(Boss)
+    /// </summary>
+    SnakeBoss,
+    /// <summary>
     /// 食物
     /// </summary>
     Food,
@@ -48,6 +52,7 @@ public static class Object3DFactory
         Object3DType.SnakePlayer => new SnakePlayer(),
         Object3DType.SnakePlayerModle => new SnakePlayerMode(),
         Object3DType.SnakeEnemy => new SnakeEnemy(),
+        Object3DType.SnakeBoss => new SnakeBoss(),
 
         Object3DType.Food => new Food(),
         _ => null,

@@ -20,13 +20,11 @@ public class Food : Object3D
     public override void InitializeData(IData data)
     {
         this.data = data as FoodData;
-
-        
     }
 
     public override void Destroy()
     {
-
+        World.Instance.RemoveFood(this);
         base.Destroy();
     }
 
@@ -34,8 +32,16 @@ public class Food : Object3D
     {
         //创建食物
         obj = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-        obj.transform.localScale = Vector3.one * 0.5f;
+        obj.transform.localScale = Vector3.one;
         obj.GetComponent<Renderer>().material = data.material;
+        obj.transform.SetParent(parent);
         base.Create();
+        World.Instance.AddFood(this);
+    }
+
+    protected override void OnCreate()
+    {
+        AddComponent(ComponentType.FoodEatComponent);
+        base.OnCreate();
     }
 }

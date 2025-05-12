@@ -11,6 +11,11 @@ public class MenuSceneInputModule : IModule
         this.controller = controller;
     }
 
+    public void Destroy()
+    {
+      
+    }
+
     public void Initialize()
     {
 

@@ -10,6 +10,11 @@ public class MenuSceneObjectModule : IModule
         this.controller = controller;
     }
 
+    public void Destroy()
+    {
+      
+    }
+
     //暂时不写多线程优化
     //List<Snake> snakeList = new List<Snake>();
     public void Initialize()

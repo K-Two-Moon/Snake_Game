@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class SnakeLvUIView : IComponent
@@ -17,8 +15,25 @@ public class SnakeLvUIView : IComponent
     public SnakeLvUIView(ComponentType type, IGameObject obj) : base(type, obj)
     {
         snake = obj as Snake;
-        Camera = GameObject.Find("Camera").GetComponent<Camera>();
-        canvas = GameObject.Find("Canvas").transform;
+        Camera cameraObj = GameObject.Find("Camera").GetComponent<Camera>();
+        if (cameraObj != null)
+        {
+            Camera = cameraObj.GetComponent<Camera>();
+        }
+        else
+        {
+            Debug.LogError("Camera GameObject not found in the scene.");
+        }
+
+        GameObject canvasObj = GameObject.Find("Canvas");
+        if (canvasObj != null)
+        {
+            canvas = canvasObj.transform;
+        }
+        else
+        {
+            Debug.LogError("Canvas GameObject not found in the scene.");
+        }
     }
 
     public override void Initialize()
@@ -39,7 +54,7 @@ public class SnakeLvUIView : IComponent
     /// <returns></returns>
     public GameObject AddKing()
     {
-        GameObject go =  GameObject.Instantiate(snake.data.config.snakeLvConfig.kingObj);
+        GameObject go = GameObject.Instantiate(snake.data.config.snakeLvConfig.kingObj);
         return go;
     }
 
@@ -48,8 +63,22 @@ public class SnakeLvUIView : IComponent
         base.Update();
         if (t_Lv != null)
         {
-            t_Lv.transform.position = Camera.WorldToScreenPoint(snake.head.position);
-            t_level.text = "Lv" + snake.data.lv;
+            // if (snake == null || snake.data == null || snake.head || t_Lv.transform == null)
+            // {
+            //     Debug.Log(2);
+            //     return;
+            // }
+            try
+            {
+                t_Lv.transform.position = Camera.WorldToScreenPoint(snake.head.position);
+                t_level.text = "Lv" + snake.data.lv;
+            }
+            catch
+            {
+
+             
+            }
+
         }
         maxSnake = World.Instance.maxSnake;
         // if(maxSnake.Id != snake.Id)

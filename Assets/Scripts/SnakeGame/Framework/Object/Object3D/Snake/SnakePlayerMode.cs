@@ -11,4 +11,6 @@ public class SnakePlayerMode : Snake
         base.OnCreate();
         RemoveComponent(ComponentType.SnakeLvUIView);
     }
+
+    
 }

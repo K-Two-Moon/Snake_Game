@@ -27,10 +27,15 @@ public class GameSceneCommandModule : IModule
         }
     }
     /// <summary>
-    /// Ìí¼ÓÃüÁîµ½¶ÓÁÐÖÐ
+    /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½îµ½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     /// </summary>
     public void AddCommand(ICommand command)
     {
         commandQueue.Enqueue(command);
+    }
+
+    public void Destroy()
+    {
+      
     }
 }

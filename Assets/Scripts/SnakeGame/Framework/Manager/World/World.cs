@@ -13,7 +13,9 @@ public partial class World : Singleton<World>
     /// </summary>
     Queue<uint> destroyQueue;
 
-    
+    List<Snake> snakeList = new List<Snake>();
+
+    public Snake maxSnake;//等级最高的蛇
     static uint nextId = 0;
 
     public void Initialize()
@@ -86,6 +88,20 @@ public partial class World : Singleton<World>
             item.Update(dayTime);
         }
 
+
+
+
+        maxSnake = SortList();
+        SnakeLvUIView snakeLvUIView = maxSnake.GetComponent(ComponentType.SnakeLvUIView) as SnakeLvUIView;
+        if (snakeLvUIView != null)
+        {
+            if (king == null)
+            {
+                king = snakeLvUIView.AddKing();
+            }
+            king.transform.position = maxSnake.head.transform.position + Vector3.up * 2;
+        }
+        if (snakeLvUIView != null)
         //销毁缓存中的对象
         if (destroyQueue.Count > 0)
         {
@@ -95,14 +111,19 @@ public partial class World : Singleton<World>
                 RemoveObject(id);
             }
         }
-    }
-}
-
 public partial class World : Singleton<World>
 {
     List<Snake> snakeList = new List<Snake>();
-
+            if (king == null)
     public Snake maxSnake;//等级最高的蛇 
+            {
+                king = snakeLvUIView.AddKing();
+            }
+            king.transform.position = maxSnake.head.transform.position + Vector3.up * 2;
+        }
+
+    }
+
     #region 蛇的集合，用来排序，皇冠位置
     public void AddSnakeList(Snake snake)
     {
@@ -112,14 +133,33 @@ public partial class World : Singleton<World>
     public void RemoveSnakeList(Snake snake)
     {
         snakeList.Remove(snake);
-    }
+    #endregion
 
-    public Snake SortList()
+
+    #region 食物遍历蛇头专用
+    public List<Snake> SnakeList => snakeList;
+    #endregion
+}
+
+/// <summary>
+/// 食物容器专用
+/// </summary>
+public partial class World : Singleton<World>
+{
+    Dictionary<uint, Food> foodDict = new Dictionary<uint, Food>();
+
+    public Dictionary<uint, Food> FoodDict => foodDict;
+
+    public void AddFood(Food food)
     {
-        snakeList.Sort((a, b) => (int)(b.data.lv - a.data.lv));
-        return snakeList[0];
+        foodDict.Add(food.Id, food);
     }
 
+    public void RemoveFood(Food food)
+    {
+        foodDict.Remove(food.Id);
+    }
+}
     #endregion   
 
     public void SnakeAddObject(IGameObject obj)
@@ -147,4 +187,10 @@ public partial class World : Singleton<World>
             king.transform.position = maxSnake.head.transform.position + Vector3.up * 2;
         }
     }
+}    {
+        snakeList.Sort((a, b) => (int)(b.data.lv - a.data.lv));
+        return snakeList[0];
+    }
+
+    #endregion
 }

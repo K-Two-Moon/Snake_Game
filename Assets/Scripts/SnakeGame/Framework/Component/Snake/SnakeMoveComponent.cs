@@ -25,6 +25,8 @@ public class SnakeMoveComponent : IComponent
 
     private void HeadMove(float deltaTime)
     {
+        if (snake == null || snake.head == null) return;
+
         Transform head = snake.head;
 
         //蛇头方向
@@ -32,6 +34,14 @@ public class SnakeMoveComponent : IComponent
 
         //蛇头移动
         head.position += head.forward * data.moveSpeed * deltaTime;
+
+        //边界检查
+        if (Mathf.Abs(head.position.x) > 50 || Mathf.Abs(head.position.z) > 50)
+        {
+            //计算指向原点的方向(忽略y轴)
+            Vector3 toOrigin = new Vector3(-head.position.x, 0, -head.position.z).normalized;
+            data.direcction = Quaternion.LookRotation(toOrigin);
+        }
     }
 
     private void BodyAndTailMove(float deltaTime)

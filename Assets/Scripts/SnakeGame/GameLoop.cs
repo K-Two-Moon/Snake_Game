@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GameLoop : MonoBehaviour
+public class GameLoop : SingletonMono<GameLoop>
 {
     // 场景状态
     private SceneStateController m_SceneStateController;
